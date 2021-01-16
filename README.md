@@ -6,17 +6,19 @@
 
 #### ...a public HTTP-accessible API. The Gilded Rose would like to utilize a surge pricing model like Uber to increase the price of items by 10% if they have been viewed more than 10 times in an hour.
 
-##### API requirements 
-###### Retrieve the current inventory (i.e. list of items)
-###### Buy an item (user must be authenticated) 
+##### API requirements:
+- [ ] Retrieve the current inventory (i.e. list of items)
+- [ ] Buy an item (user must be authenticated) 
 
-###### Here is the definition for an item: 
+###### Here is the definition for an item:
+```C#
 class Item 
 { 
 public    String    Name {get; set;} 
 public    String    Description {get; set;} 
 public    int    Price {get; set;} 
-} 
+}
+```
 
 ###### A couple of questions to consider: 
 ####### How do we know if a user is authenticated? 
