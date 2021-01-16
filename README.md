@@ -12,7 +12,7 @@
          { 
             public    String    Name {get; set;} 
             public    String    Description {get; set;} 
-            public    int    Price {get; set;} 
+            public    int       Price {get; set;} 
          }
          ```
 
