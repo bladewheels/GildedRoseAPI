@@ -4,8 +4,8 @@
 
 1. The requirements are: to produce a public HTTP-accessible API. The Gilded Rose would like to utilize a surge pricing model like Uber to increase the price of items by 10% if they have been viewed more than 10 times in an hour.
    1. i.e.:
-- [ ] Retrieve the current inventory (i.e. list of items)
-- [ ] Buy an item (user must be authenticated) 
+      1. [ ] Retrieve the current inventory (i.e. list of items)
+      2.  [ ] Buy an item (user must be authenticated) 
 
 ###### Here is the definition for an item:
 ```C#
