@@ -1,6 +1,6 @@
 # GildedRoseAPI
 
-## This is a SpringBoot-based REST API server for a fictitious entity, 'The Gilded Rose'
+## This is a Java/SpringBoot-based HTTP/REST API server for a fictitious entity, 'The Gilded Rose'.
 
 ### The requirements are thus:
 
@@ -19,18 +19,18 @@ public    int    Price {get; set;}
 } 
 
 ###### A couple of questions to consider: 
-###### How do we know if a user is authenticated? 
-###### Is it always possible to buy an item? 
+####### How do we know if a user is authenticated? 
+####### Is it always possible to buy an item? 
 
 ###### Please model (and test!) accordingly. Using a real database is not required. 
 ###### Deliverables 
-#### A runnable system with instructions on how to build/run your application
-#### The application should be built using Java and the Spring framework
-#### The application should be able to be run from the command line without any dependencies or database’s required to run your application.  (Other than maven, gradle and Java)
-#### A system that can process the two API requests via HTTP 
-#### Appropriate tests (unit, integration etc) 
-#### A quick explanation of: 
-##### Your application, how you set it up, how it was built, how you designed the surge pricing and the type of architecture chosen.
-##### Choice of data format. Include one example of a request and response. 
-##### What authentication mechanism was chosen, and why?
+####### A runnable system with instructions on how to build/run your application
+####### The application should be built using Java and the Spring framework
+####### The application should be able to be run from the command line without any dependencies or database’s required to run your application.  (Other than maven, gradle and Java)
+####### A system that can process the two API requests via HTTP 
+####### Appropriate tests (unit, integration etc) 
+####### A quick explanation of: 
+######## Your application, how you set it up, how it was built, how you designed the surge pricing and the type of architecture chosen.
+######## Choice of data format. Include one example of a request and response. 
+######## What authentication mechanism was chosen, and why?
 
