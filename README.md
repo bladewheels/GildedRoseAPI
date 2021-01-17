@@ -41,7 +41,11 @@
   * ranges e.g. names starting with? IDs?
   * [ ] pagination?
     * (variable?) page size?
+  * [ ] consciously choose to return *in-stock* yes/no attribute with each item
+    * i.e. rather than *not* returning items that *are* out-of-stock
+    * this allows callers to parallelize their *get-all, by-page* calls *without* inadvertently missing items that go in or out of stock during the query time
 * [ ] generate API docs from test w/Spring Docs?
 * [ ] use H2 DB and persist to local file? 
   * Or, just use HashMap as DB?
     * key on Item ID
+
