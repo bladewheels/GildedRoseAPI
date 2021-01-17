@@ -2,7 +2,7 @@
 
 ## This is a Java/SpringBoot-based HTTP/REST API server for a fictitious entity, 'The Gilded Rose'.
 
-* The requirements are: "...to produce a public HTTP-accessible API. The Gilded Rose would like to utilize a **surge pricing** model like Uber to increase the price of *items* by 10% if they have been viewed *more than 10 times in an hour*."
+* The requirements are: "...to produce a public HTTP-accessible API. The Gilded Rose would like to utilize a **surge pricing** model like Uber to increase the price of *items* by 10% if they have been **viewed** *more than 10 times in an hour*."
    * i.e.:
      * Retrieve the current inventory (i.e. list of items) [ ]
      * Buy an item (user must be authenticated) [ ]
@@ -41,6 +41,7 @@
   * ranges e.g. names starting with? IDs? [ ]
   * pagination? [ ]
     * (variable?) page size? [ ]
+    * how to determine serverside *viewed* status, for each item, for the purposes of determing *surge pricing*?
   * consciously choose to return *in-stock* yes/no attribute with each item [ ]
     * i.e. rather than *not* returning items that *are* out-of-stock
     * this allows callers to parallelize their *get-all, by-page* calls *without* inadvertently missing/duplicating items that go in or out of stock during the query time
@@ -48,7 +49,10 @@
   * quantity defaults to: 1
   * return 400 if quantity > in-stock count?
   * how to safely (i.e. ACID) handle concurrent decrements to stock level?
-  * does surge pring apply if fulfilling *part* of a buy request tips the items/hour *over* the threshold?
+  * does surge pring apply if fulfilling *part* of executing a buy request tips the items/hour *over* the threshold?
+* *surge pricing*:
+  * applies to 10 times in current *wallclock* hour or *duration* hour?
+    * likely *last 60 minutes* is implied in **surge** nomenclature
 * generate API docs from test w/Spring Docs? [ ]
 * use H2 DB and persist to local file? [ ]
   * Or, just use HashMap as DB?
