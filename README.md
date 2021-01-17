@@ -44,6 +44,11 @@
   * consciously choose to return *in-stock* yes/no attribute with each item [ ]
     * i.e. rather than *not* returning items that *are* out-of-stock
     * this allows callers to parallelize their *get-all, by-page* calls *without* inadvertently missing/duplicating items that go in or out of stock during the query time
+* /buy endpoint:
+  * quantity defaults to: 1
+  * return 400 if quantity > in-stock count?
+  * how to safely (i.e. ACID) handle concurrent decrements to stock level?
+  * does surge pring apply if fulfilling *part* of a buy request tips the items/hour *over* the threshold?
 * generate API docs from test w/Spring Docs? [ ]
 * use H2 DB and persist to local file? [ ]
   * Or, just use HashMap as DB?
