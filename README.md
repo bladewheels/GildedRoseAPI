@@ -32,3 +32,7 @@
      * [ ] Choice of *data format*. Include one example of a request and response. 
      * [ ] What *authentication mechanism* was chosen, and why?
 
+## Points to ponder:
+[ ] HATEOS
+[ ] JSON schemas
+[ ] pagination for /list? page size?
