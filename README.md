@@ -53,6 +53,10 @@
 * *surge pricing*:
   * applies to 10 times in current *wallclock* hour or *duration* hour?
     * likely *last 60 minutes* is implied in **surge** nomenclature
+  * concurrent listings of items need to be aggregated & processed by surge pricer
+    * data structure for surge pricer process?
+      * ring buffer or dequeue or ...?
+      * needs rolling time window to determine surge
 * generate API docs from test w/Spring Docs? [ ]
 * use H2 DB and persist to local file? [ ]
   * Or, just use HashMap as DB?
