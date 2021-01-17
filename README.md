@@ -35,8 +35,12 @@
 ## Points to ponder:
 * [ ] HATEOS?
 * [ ] JSON schemas?
-* [ ] pagination for /list?
-  * (variable?) page size?
+* introduce & expose Item IDs?
+* /list endpoint:
+  * filter w/query params?
+  * ranges e.g. names starting with? IDs?
+  * [ ] pagination?
+    * (variable?) page size?
 * [ ] generate API docs from test w/Spring Docs?
 * [ ] use H2 DB and persist to local file? 
   * Or, just use HashMap as DB?
