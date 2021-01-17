@@ -59,6 +59,7 @@
       * needs rolling time window to determine surge
       * simplest: DB View like: COUNT(views) WHERE viewedAt >= (NOW() - 1 hour) GROUP BY ItemID
         * needs cleanup script to cull old views, @Scheduled?
+   * round *up* or *down* when calculating? e.g. 1225 becomes 1238 or 1237?
 * generate API docs from test w/Spring Docs? [ ]
 * use H2 DB and persist to local file? [ ]
   * Or, just use HashMap as DB?
