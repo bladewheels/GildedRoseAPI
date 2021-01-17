@@ -2,7 +2,7 @@
 
 ## This is a Java/SpringBoot-based HTTP/REST API server for a fictitious entity, 'The Gilded Rose'.
 
-* The requirements are: to produce a public HTTP-accessible API. The Gilded Rose would like to utilize a **surge pricing** model like Uber to increase the price of *items* by 10% if they have been viewed *more than 10 times in an hour*.
+* The requirements are: "...to produce a public HTTP-accessible API. The Gilded Rose would like to utilize a **surge pricing** model like Uber to increase the price of *items* by 10% if they have been viewed *more than 10 times in an hour*."
    * i.e.:
      * [ ] Retrieve the current inventory (i.e. list of items)
      * [ ] Buy an item (user must be authenticated) 
