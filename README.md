@@ -33,6 +33,7 @@
      * [ ] What *authentication mechanism* was chosen, and why?
 
 ## Points to ponder:
-[ ] HATEOS
-[ ] JSON schemas
+[ ] HATEOS?
+[ ] JSON schemas?
 [ ] pagination for /list? page size?
+[ ] generate API docs from test w/Spring Docs?
