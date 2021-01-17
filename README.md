@@ -33,7 +33,10 @@
      * [ ] What *authentication mechanism* was chosen, and why?
 
 ## Points to ponder:
-[ ] HATEOS?
-[ ] JSON schemas?
-[ ] pagination for /list? page size?
-[ ] generate API docs from test w/Spring Docs?
+* [ ] HATEOS?
+* [ ] JSON schemas?
+* [ ] pagination for /list? page size?
+* [ ] generate API docs from test w/Spring Docs?
+* [ ] use H2 DB and persist to local file? 
+  * Or, just use HashMap as DB?
+    * key on Item ID
