@@ -35,7 +35,8 @@
 ## Points to ponder:
 * [ ] HATEOS?
 * [ ] JSON schemas?
-* [ ] pagination for /list? page size?
+* [ ] pagination for /list?
+  * (variable?) page size?
 * [ ] generate API docs from test w/Spring Docs?
 * [ ] use H2 DB and persist to local file? 
   * Or, just use HashMap as DB?
