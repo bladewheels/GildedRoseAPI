@@ -64,4 +64,6 @@
 * use H2 DB and persist to local file? [ ]
   * Or, just use HashMap as DB?
     * key on Item ID
+  * *bootstrap* process should use *deterministic* **ItemIDs and prices** to ease integration/unit  testing
+    * **names & descriptions** too?
 
