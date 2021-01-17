@@ -57,6 +57,8 @@
     * data structure for surge pricer process?
       * ring buffer or dequeue or ...?
       * needs rolling time window to determine surge
+      * simplest: DB View like: COUNT(views) WHERE viewedAt >= (NOW() - 1 hour) GROUP BY ItemID
+        * needs cleanup script to cull old views, @Scheduled?
 * generate API docs from test w/Spring Docs? [ ]
 * use H2 DB and persist to local file? [ ]
   * Or, just use HashMap as DB?
