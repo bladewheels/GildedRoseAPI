@@ -53,6 +53,8 @@
   * does surge pring apply if fulfilling *part* of executing a buy request tips the items/hour *over* the threshold?
   * **should** items have a pre-calculated *surge price* so as to avoid onerous calculating when calling /list?
     * or, would /list calls **just** advertise the *normal* price?
+* purchases should result in a one-line description e.g.
+  * itemID totalQuantity surgeQuantity price surgePrice totalPrice
 * *surge pricing*:
   * applies to 10 times in current *wallclock* hour or *duration* hour?
     * likely *last 60 minutes* is implied in **surge** nomenclature
