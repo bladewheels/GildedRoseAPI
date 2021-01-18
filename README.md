@@ -49,7 +49,10 @@
   * quantity defaults to: 1
   * return 400 if quantity > in-stock count?
   * how to safely (i.e. ACID) handle concurrent decrements to stock level?
+  * where (if at all) to persist buys? e.g. item, quantity, price, buyer?
   * does surge pring apply if fulfilling *part* of executing a buy request tips the items/hour *over* the threshold?
+  * **should** items have a pre-calculated *surge price* so as to avoid onerous calculating when calling /list?
+    * or, would /list calls **just** advertise the *normal* price?
 * *surge pricing*:
   * applies to 10 times in current *wallclock* hour or *duration* hour?
     * likely *last 60 minutes* is implied in **surge** nomenclature
