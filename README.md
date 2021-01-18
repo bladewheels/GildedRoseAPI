@@ -66,4 +66,11 @@
     * key on Item ID
   * *bootstrap* process should use *deterministic* **ItemIDs and prices** to ease integration/unit  testing
     * **names & descriptions** too?
+* authorization:
+  * differentiate between SHOPPER and ADMINISTRATOR roles:
+    * SHOPPERs can call /list and /buy, as above
+    * ADMINISTRATORs can, in addition call:
+      * /add, for adding new Items
+      * /remove, for removing Items
+      * /stock, for changing stock levels of Items in the inventory
 
