@@ -25,8 +25,8 @@ final class PrivateUsersController {
 
   @PostMapping("/remove")
   boolean remove(@AuthenticationPrincipal final User user) {
-    // TODO: REVIEW: This endpoint/controller only makes sense if the user has an ADMIN Role
-    // which isn't even checked here...
-    return service.remove(user).isPresent();
+    // TODO: REVIEW: This endpoint/controller only makes sense if the user has an ADMIN Role,
+    // Roles have not yet been implemented...
+    return false; // ,,,but if they were, we could do: return service.remove(user).isPresent();
   }
 }

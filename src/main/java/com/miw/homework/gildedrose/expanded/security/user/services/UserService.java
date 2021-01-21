@@ -13,7 +13,5 @@ public interface UserService {
 
   Optional<User> find(String id);
 
-  Optional<User> findByEmailAddress(String email);
-
   Optional<User> remove(User user);
 }

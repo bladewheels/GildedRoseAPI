@@ -29,15 +29,34 @@ final class PublicUsersController {
 
   @PostMapping("/register")
   String register(@RequestParam("email") final String email) {
-    final String uuid = UUID.randomUUID().toString();
-    service
-      .save(
-        User
-          .builder()
-          .id(uuid)
-          .username(email)
-          .build()
-      );
-    return uuid;
+
+    if (isShippingAndBillingSetupForThisEmailAddress(email)) {
+      final String uuid = UUID.randomUUID().toString();
+      service
+        .save(
+          User
+            .builder()
+            .id(uuid)
+            .username(email)
+            .build()
+        );
+      return "Welcome " + email + ", please use the following API token to shop at Gilded Rose ===>" + uuid + "<===.";
+    }
+    else {
+      return "Sorry, that email address is not setup for shipping/billing - please visit https://gildedrose.com/accounts to set that up first.";
+    }
+  }
+
+  /**
+   * Bogus remote service call to validate email addresses eligible for API registration.
+   *
+   * @param email
+   * @return true for email addresses eligible for API registration
+   */
+  private boolean isShippingAndBillingSetupForThisEmailAddress(String email) {
+    return email.equalsIgnoreCase("customer_x@go.to") ||
+            email.equalsIgnoreCase("customer_x@the.wang") ||
+            email.equalsIgnoreCase("customer_x@us.online") ||
+            email.equalsIgnoreCase("customer_x@cheese.pizza");
   }
 }

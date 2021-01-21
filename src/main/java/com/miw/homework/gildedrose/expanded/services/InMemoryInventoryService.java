@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 
+import static com.miw.homework.gildedrose.expanded.models.ordered.OrderedItem.INVALID_ORDER_ID;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -29,6 +30,8 @@ public class InMemoryInventoryService implements InventoryService {
     public static final double SURGE_PRICE_MULTIPLIER = 1.1;
 
     private final Map<Integer, InventoryItem> inventoriedItems = new ConcurrentHashMap<>();
+    // Currently, this List grows without bound...
+    // TODO: Prune this list, we only need Dates from the last SURGE_MINUTES or so.
     private List<Date> inventoryViews = new CopyOnWriteArrayList<>();
 
     @Override
@@ -52,10 +55,10 @@ public class InMemoryInventoryService implements InventoryService {
 
             if (currentStockLevel >= quantity) {
                 inventoriedItem.getStockLevel().subtract(quantity);
-                double priceEach = getSurgeOrRegularPrice(inventoriedItem.getItem().getPrice());
+                int priceEach = getSurgeOrRegularPrice(inventoriedItem.getItem().getPrice());
                 return PurchasedItem
                         .builder()
-                        .id(UUID.randomUUID().toString())
+                        .orderId(UUID.randomUUID().toString())
                         .quantity(quantity)
                         .itemFromInventory(inventoriedItem)
                         .priceEach(priceEach)
@@ -64,7 +67,7 @@ public class InMemoryInventoryService implements InventoryService {
             } else {
                 return UnderStockedItem
                         .builder()
-                        .id(UUID.randomUUID().toString())
+                        .orderId(INVALID_ORDER_ID)
                         .itemFromInventory(inventoriedItem)
                         .quantity(quantity)
                         .inStock(currentStockLevel)
@@ -139,9 +142,9 @@ public class InMemoryInventoryService implements InventoryService {
                 .size();
     }
 
-    private double getSurgeOrRegularPrice(int price) {
+    private int getSurgeOrRegularPrice(int price) {
         return (findNumberOfViewsLastMinutes(SURGE_MINUTES) > SURGE_VIEW_COUNT)
-                ? Math.floor(SURGE_PRICE_MULTIPLIER * price)
+                ? (int) Math.floor(SURGE_PRICE_MULTIPLIER * price)
                 : price;
     }
 }

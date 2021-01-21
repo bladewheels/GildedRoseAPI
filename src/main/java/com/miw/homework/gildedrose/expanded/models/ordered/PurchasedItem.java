@@ -19,20 +19,20 @@ public class PurchasedItem implements Serializable, OrderedItem {
     private static final long serialVersionUID = 1L;
     private static final String SURGE_PRICING_WARNING = "Surge pricing may have inflated the list price of this Item.";
 
-    String id;
+    String orderId;
     InventoryItem itemFromInventory;
     int quantity;
-    double priceEach;
-    double totalCharged;
+    int priceEach;
+    int totalCharged;
     final String notice = SURGE_PRICING_WARNING;
 
     @JsonCreator
-    public PurchasedItem(@JsonProperty("id") final String id,
+    public PurchasedItem(@JsonProperty("orderId") final String orderId,
                          @JsonProperty("itemFromInventory") final InventoryItem itemFromInventory,
                          @JsonProperty("quantity") final int quantity,
-                         @JsonProperty("priceEach") final double priceEach,
-                         @JsonProperty("totalCharged") final double totalCharged) {
-        this.id = requireNonNull(id);
+                         @JsonProperty("priceEach") final int priceEach,
+                         @JsonProperty("totalCharged") final int totalCharged) {
+        this.orderId = requireNonNull(orderId);
         this.itemFromInventory = requireNonNull(itemFromInventory);
         this.quantity = requireNonNull(quantity);
         this.priceEach = requireNonNull(priceEach);

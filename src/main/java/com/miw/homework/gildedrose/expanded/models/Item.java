@@ -30,10 +30,10 @@ public class Item implements Serializable {
     int price;
 
     @JsonCreator
-    Item(@JsonProperty("id") final int id,
-         @JsonProperty("name") final String name,
-         @JsonProperty("description") final String description,
-         @JsonProperty("price") final int price) {
+    public Item(@JsonProperty("id") final int id,
+                @JsonProperty("name") final String name,
+                @JsonProperty("description") final String description,
+                @JsonProperty("price") final int price) {
         this.id = requireNonNull(id);
         this.name = requireNonNull(name);
         this.description = requireNonNull(description);
