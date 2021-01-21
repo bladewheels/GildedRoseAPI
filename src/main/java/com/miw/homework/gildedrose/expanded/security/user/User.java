@@ -13,28 +13,34 @@ import java.util.Collection;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * An implementation of {@UserDetails} for users of this API.
+ */
 @Value
 @Builder
 public class User implements UserDetails {
-    private static final long serialVersionUID = 1_198_327_715_019_373_335L;
+    private static final long serialVersionUID = 1L;
 
     String id;
 
-    // NOTE: The following field meets the requirements of Spring's UserDetails
-    // but the caller MUST supply an email parameter
-    // e.g. when POSTing to /public/users/register send: email=a.b@c.de
+    /**
+     * @implNote The following field meets the requirements of Spring's UserDetails
+     * but the caller MUST supply an email parameter
+     *   e.g. when POSTing to /public/users/register do send: email=a.b@c.de
+     */
     String username;
 
-    // NOTE: The following field meets the requirements of Spring's UserDetails
-    // but is not actually used i.e. only the id is used by the secured API(s)
-    // in the Authorization HTTP Header.
+    /**
+     * @implNote The following field meets the requirements of Spring's UserDetails
+     * but is not actually used i.e. only the id is used by the secured API(s),
+     * in the Authorization HTTP Header.
+     */
     String password;
 
     @JsonCreator
     User(@JsonProperty("id") final String id,
          @JsonProperty("email") final String username,
-         @JsonProperty("password") final String password
-    ) {
+         @JsonProperty("password") final String password) {
         super();
         this.id = requireNonNull(id);
         this.username = requireNonNull(username);
@@ -75,6 +81,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }
 

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
+/**
+ * A web controller for private resources i.e. {@link User}.
+ */
 @RestController
 @RequestMapping("/private/users")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
@@ -18,10 +21,12 @@ import static lombok.AccessLevel.PRIVATE;
 final class PrivateUsersController {
 
   @NonNull
-  UserService usersSrvc;
+  UserService service;
 
   @PostMapping("/remove")
   boolean remove(@AuthenticationPrincipal final User user) {
-    return usersSrvc.remove(user).isPresent();
+    // TODO: REVIEW: This endpoint/controller only makes sense if the user has an ADMIN Role
+    // which isn't even checked here...
+    return service.remove(user).isPresent();
   }
 }

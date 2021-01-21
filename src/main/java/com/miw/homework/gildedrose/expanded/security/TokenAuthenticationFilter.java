@@ -44,10 +44,11 @@ final class TokenAuthenticationFilter extends AbstractAuthenticationProcessingFi
 
   @Override
   protected void successfulAuthentication(
-    final HttpServletRequest request,
-    final HttpServletResponse response,
-    final FilterChain chain,
-    final Authentication authResult) throws IOException, ServletException {
+                  final HttpServletRequest request,
+                  final HttpServletResponse response,
+                  final FilterChain chain,
+                  final Authentication authResult)
+          throws IOException, ServletException {
     super.successfulAuthentication(request, response, chain, authResult);
     chain.doFilter(request, response);
   }

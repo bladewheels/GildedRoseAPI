@@ -15,6 +15,9 @@ import java.util.UUID;
 import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
+/**
+ * A web controller for registering new {@link User}s.
+ */
 @RestController
 @RequestMapping("/public/users")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
@@ -22,13 +25,12 @@ import static lombok.AccessLevel.PRIVATE;
 final class PublicUsersController {
 
   @NonNull
-  UserService usersSrvc;
+  UserService service;
 
   @PostMapping("/register")
   String register(@RequestParam("email") final String email) {
-
     final String uuid = UUID.randomUUID().toString();
-    usersSrvc
+    service
       .save(
         User
           .builder()

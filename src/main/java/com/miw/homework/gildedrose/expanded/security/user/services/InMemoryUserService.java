@@ -10,6 +10,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.Optional.ofNullable;
 
+/**
+ * An in-memory implementation of {@UserService}.
+ */
 @Service
 final class InMemoryUserService implements UserService {
 

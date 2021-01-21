@@ -24,6 +24,9 @@ import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+/**
+ * A {@WebSecurityConfigurer} for our API.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
@@ -53,14 +56,13 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Override
-  protected void configure(final HttpSecurity http) throws Exception {
-    http
+  protected void configure(final HttpSecurity httpSec) throws Exception {
+    httpSec
       .sessionManagement()
       .sessionCreationPolicy(STATELESS)
       .and()
       .exceptionHandling()
-      // this entry point handles when you request a protected page and you are not yet
-      // authenticated
+      // this entry point handles when you request a protected page and you are not yet uthenticated
       .defaultAuthenticationEntryPointFor(forbiddenEntryPoint(), PROTECTED_URLS)
       .and()
       .authenticationProvider(provider)
@@ -90,9 +92,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     return successHandler;
   }
 
-  /**
-   * Disable Spring boot automatic filter registration.
-   */
   @Bean
   FilterRegistrationBean disableAutoRegistration(final TokenAuthenticationFilter filter) {
     final FilterRegistrationBean registration = new FilterRegistrationBean(filter);
