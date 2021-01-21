@@ -79,7 +79,7 @@ public class InMemoryInventoryService implements InventoryService {
     }
 
     @PostConstruct
-    public void init() {
+    void init() {
         save(
             createInventoryItem(4,
                 createItem(1, "Thing 0x001", "A reeallly nice thing!", 35_612))
@@ -132,7 +132,7 @@ public class InMemoryInventoryService implements InventoryService {
         inventoriedItems.put(inventoriedItem.getId(), inventoriedItem);
     }
 
-    private int findNumberOfViewsLastMinutes(int filterMinutes) {
+    int findNumberOfViewsLastMinutes(int filterMinutes) {
         return inventoryViews
                 .stream()
                 .filter((d) -> {
@@ -142,7 +142,7 @@ public class InMemoryInventoryService implements InventoryService {
                 .size();
     }
 
-    private int getSurgeOrRegularPrice(int price) {
+    int getSurgeOrRegularPrice(int price) {
         return (findNumberOfViewsLastMinutes(SURGE_MINUTES) > SURGE_VIEW_COUNT)
                 ? (int) Math.floor(SURGE_PRICE_MULTIPLIER * price)
                 : price;
