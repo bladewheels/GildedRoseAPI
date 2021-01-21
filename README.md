@@ -49,7 +49,12 @@
   * quantity defaults to: 1
   * return 400 if quantity > in-stock count?
   * how to safely (i.e. ACID) handle concurrent decrements to stock level?
+  * where (if at all) to persist buys? e.g. item, quantity, price, buyer?
   * does surge pring apply if fulfilling *part* of executing a buy request tips the items/hour *over* the threshold?
+  * **should** items have a pre-calculated *surge price* so as to avoid onerous calculating when calling /list?
+    * or, would /list calls **just** advertise the *normal* price?
+* purchases should result in a one-line description e.g.
+  * itemID totalQuantity surgeQuantity price surgePrice totalPrice
 * *surge pricing*:
   * applies to 10 times in current *wallclock* hour or *duration* hour?
     * likely *last 60 minutes* is implied in **surge** nomenclature
@@ -66,4 +71,11 @@
     * key on Item ID
   * *bootstrap* process should use *deterministic* **ItemIDs and prices** to ease integration/unit  testing
     * **names & descriptions** too?
+* authorization:
+  * differentiate between SHOPPER and ADMINISTRATOR roles:
+    * SHOPPERs can call /list and /buy, as above
+    * ADMINISTRATORs can, in addition call:
+      * /add, for adding new Items
+      * /remove, for removing Items
+      * /stock, for changing stock levels of Items in the inventory
 
