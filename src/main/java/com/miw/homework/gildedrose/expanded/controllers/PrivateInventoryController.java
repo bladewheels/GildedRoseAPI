@@ -54,10 +54,10 @@ final class PrivateInventoryController {
     }
     else {
       return new UnderStockedItem(
-              INVALID_ORDER_ID,
-              new InventoryItem(
-                      Integer.valueOf(id),
-                      new Item(Integer.valueOf(id),"Invalid quantity provided","i.e. quantity = " + quantity,0), new StockLevelAwareLongAdder()), 0, 0
+                  INVALID_ORDER_ID,
+                  new InventoryItem(
+                          Integer.valueOf(id),
+                          new Item(Integer.valueOf(id),"Invalid quantity provided","i.e. quantity = " + quantity,0), new StockLevelAwareLongAdder()), 0, 0
       );
     }
   }

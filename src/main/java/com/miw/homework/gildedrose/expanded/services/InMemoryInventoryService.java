@@ -7,21 +7,26 @@ import com.miw.homework.gildedrose.expanded.models.ordered.DiscontinuedItem;
 import com.miw.homework.gildedrose.expanded.models.ordered.PurchasedItem;
 import com.miw.homework.gildedrose.expanded.models.ordered.UnderStockedItem;
 import com.miw.homework.gildedrose.expanded.utils.StockLevelAwareLongAdder;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static com.miw.homework.gildedrose.expanded.models.ordered.OrderedItem.INVALID_ORDER_ID;
 import static java.util.stream.Collectors.toList;
+import static lombok.AccessLevel.PACKAGE;
+import static lombok.AccessLevel.PRIVATE;
 
 /**
  * A service class that encapsulates some data structures for representing the inventory state
  * and offers methods to manipulate the same; implements surge pricing when applicable.
  */
+@FieldDefaults(level = PRIVATE, makeFinal = true)
+@AllArgsConstructor(access = PACKAGE)
 @Service
 public class InMemoryInventoryService implements InventoryService {
 
@@ -29,15 +34,13 @@ public class InMemoryInventoryService implements InventoryService {
     public static final int SURGE_VIEW_COUNT = 10;
     public static final double SURGE_PRICE_MULTIPLIER = 1.1;
 
-    private final Map<Integer, InventoryItem> inventoriedItems = new ConcurrentHashMap<>();
-    // Currently, this List grows without bound...
-    // TODO: Prune this list, we only need Dates from the last SURGE_MINUTES or so.
-    private List<Date> inventoryViews = new CopyOnWriteArrayList<>();
+    @NonNull
+    InMemoryInventoryStorage storage;
 
     @Override
     public List<InventoryItem> findAll() {
-        inventoryViews.add(new Date());
-        return inventoriedItems
+        storage.addNewView();
+        return storage.getAllInventoryItems()
                 .values()
                 .stream()
                 .sorted(Comparator.comparing((i) -> i.getItem().getName()))
@@ -47,9 +50,8 @@ public class InMemoryInventoryService implements InventoryService {
     @Override
     public OrderedItem buy(int quantity, int inventoriedItemId) {
 
+        InventoryItem inventoriedItem = storage.getInventoryItem(inventoriedItemId);
         // TODO: REVIEW: Consider using Optional here...
-        InventoryItem inventoriedItem = inventoriedItems.get(inventoriedItemId);
-
         if (null != inventoriedItem) {
             int currentStockLevel = inventoriedItem.getStockLevel().intValue();
 
@@ -129,11 +131,11 @@ public class InMemoryInventoryService implements InventoryService {
     }
 
     private void save(InventoryItem inventoriedItem) {
-        inventoriedItems.put(inventoriedItem.getId(), inventoriedItem);
+        storage.addInventoryItem(inventoriedItem.getId(), inventoriedItem);
     }
 
     int findNumberOfViewsLastMinutes(int filterMinutes) {
-        return inventoryViews
+        return storage.getViews()
                 .stream()
                 .filter((d) -> {
                     return TimeUnit.MILLISECONDS.toMinutes(new Date().getTime() - d.getTime()) <= filterMinutes;

@@ -32,6 +32,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
+
   private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
     new AntPathRequestMatcher("/public/**"),
     new AntPathRequestMatcher("/error/**")
@@ -62,7 +63,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
       .sessionCreationPolicy(STATELESS)
       .and()
       .exceptionHandling()
-      // this entry point handles when you request a protected page and you are not yet uthenticated
+      // this entry point handles when you request a protected page and you are not yet authenticated
       .defaultAuthenticationEntryPointFor(forbiddenEntryPoint(), PROTECTED_URLS)
       .and()
       .authenticationProvider(provider)

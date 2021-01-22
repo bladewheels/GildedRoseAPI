@@ -1,6 +1,5 @@
 package com.miw.homework.gildedrose.expanded.services;
 
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,26 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryInventoryServiceTest {
 
+    InMemoryInventoryStorage db = new InMemoryInventoryStorage();
     InMemoryInventoryService sut;
 
     @BeforeEach
     void init() {
-        sut = new InMemoryInventoryService();
+        sut = new InMemoryInventoryService(db);
         sut.init();
-    }
-
-    private void listInventory(int timesToCall) {
-        IntStream
-            .rangeClosed(1, timesToCall)
-            .parallel()
-            .forEach(i -> {
-                sut.findAll();
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    // no-op
-                }
-            });
     }
 
     @Test
@@ -41,7 +27,7 @@ class InMemoryInventoryServiceTest {
     @Test
     void findNumberOfViewsLastMinutes() {
         int expected = 20;
-        listInventory(expected);
+        listInventoryMultipleTimes(expected);
         int actual = sut.findNumberOfViewsLastMinutes(SURGE_MINUTES);
         assertEquals(expected, actual, expected + " Dates should have been immediately added.");
     }
@@ -50,7 +36,7 @@ class InMemoryInventoryServiceTest {
     void getRegularPrice() {
         int listPrice = 20;
         int expected = 20;
-        listInventory(SURGE_VIEW_COUNT);
+        listInventoryMultipleTimes(SURGE_VIEW_COUNT);
         int actual = sut.getSurgeOrRegularPrice(listPrice);
         assertEquals(expected, actual, expected + "List price should have been returned.");
     }
@@ -59,8 +45,23 @@ class InMemoryInventoryServiceTest {
     void getSurgePrice() {
         int listPrice = 20;
         int expected = 22;
-        listInventory(SURGE_VIEW_COUNT + 1);
+        listInventoryMultipleTimes(SURGE_VIEW_COUNT + 1);
         int actual = sut.getSurgeOrRegularPrice(listPrice);
         assertEquals(expected, actual, expected + "Surge price should have been returned.");
+    }
+
+    private void listInventoryMultipleTimes(int timesToCall) {
+        IntStream
+                .rangeClosed(1, timesToCall)
+                .parallel()
+                .forEach(i -> {
+                    sut.findAll();
+                    // The following should become unnecessary once I complete the data layer mocking
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        // no-op
+                    }
+                });
     }
 }
