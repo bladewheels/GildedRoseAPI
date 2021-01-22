@@ -13,8 +13,9 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import static com.miw.homework.gildedrose.expanded.models.ordered.OrderedItem.INVALID_ORDER_ID;
 import static java.util.stream.Collectors.toList;
@@ -39,7 +40,7 @@ public class InMemoryInventoryService implements InventoryService {
 
     @Override
     public List<InventoryItem> findAll() {
-        storage.addNewView();
+        storage.incrementViewsWithThisDate(LocalDateTime.now());
         return storage.getAllInventoryItems()
                 .values()
                 .stream()
@@ -55,9 +56,9 @@ public class InMemoryInventoryService implements InventoryService {
         if (null != inventoriedItem) {
             int currentStockLevel = inventoriedItem.getStockLevel().intValue();
 
-            if (currentStockLevel >= quantity) {
+            if (currentStockLevel >= quantity) { // Happy path...
                 inventoriedItem.getStockLevel().subtract(quantity);
-                int priceEach = getSurgeOrRegularPrice(inventoriedItem.getItem().getPrice());
+                int priceEach = getSurgeOrListPrice(inventoriedItem.getItem().getPrice(), LocalDateTime.now());
                 return PurchasedItem
                         .builder()
                         .orderId(UUID.randomUUID().toString())
@@ -66,7 +67,7 @@ public class InMemoryInventoryService implements InventoryService {
                         .priceEach(priceEach)
                         .totalCharged(quantity * priceEach)
                         .build();
-            } else {
+            } else { // TODO: REVIEW: Consider throwing custom Exceptions here and let the controller formulate an appropriate response
                 return UnderStockedItem
                         .builder()
                         .orderId(INVALID_ORDER_ID)
@@ -134,18 +135,26 @@ public class InMemoryInventoryService implements InventoryService {
         storage.addInventoryItem(inventoriedItem.getId(), inventoriedItem);
     }
 
-    int findNumberOfViewsLastMinutes(int filterMinutes) {
+    /**
+     * Return a count of the number of times the Inventory was viewed over a period of time.
+     *
+     * @param maxMinutes number of minutes before latestTime to filter the view date/time(s)
+     * @param latestTime end of the period of time to consider
+     * @return
+     */
+    int findNumberOfViews(int maxMinutes, LocalDateTime latestTime) {
         return storage.getViews()
                 .stream()
                 .filter((d) -> {
-                    return TimeUnit.MILLISECONDS.toMinutes(new Date().getTime() - d.getTime()) <= filterMinutes;
+                    return ChronoUnit.MINUTES.between(latestTime.minusHours(1), latestTime) <= maxMinutes;
+//                    return TimeUnit.MILLISECONDS.toMinutes(dateTime.getTime() - d.getTime()) <= filterMinutes;
                 })
                 .collect(toList())
                 .size();
     }
 
-    int getSurgeOrRegularPrice(int price) {
-        return (findNumberOfViewsLastMinutes(SURGE_MINUTES) > SURGE_VIEW_COUNT)
+    int getSurgeOrListPrice(int price, LocalDateTime dateTime) {
+        return (findNumberOfViews(SURGE_MINUTES, dateTime) > SURGE_VIEW_COUNT)
                 ? (int) Math.floor(SURGE_PRICE_MULTIPLIER * price)
                 : price;
     }

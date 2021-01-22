@@ -3,6 +3,7 @@ package com.miw.homework.gildedrose.expanded.services;
 import com.miw.homework.gildedrose.expanded.models.InventoryItem;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -16,13 +17,13 @@ public class InMemoryInventoryStorage {
     private Map<Integer, InventoryItem> items = new ConcurrentHashMap<>();
     // Currently, this List grows without bound...
     // TODO: Prune this list, we only need Dates from the last SURGE_MINUTES or so.
-    private List<Date> views = new CopyOnWriteArrayList<>();
-
-    public void addNewView() {
-        views.add(new Date());
+    private List<LocalDateTime> views = new CopyOnWriteArrayList<>();
+// LocalDateTime.now()
+    public void incrementViewsWithThisDate(LocalDateTime dateTime) {
+        views.add(dateTime);
     }
 
-    public Collection<Date> getViews() {
+    public Collection<LocalDateTime> getViews() {
         return views;
     }
 
