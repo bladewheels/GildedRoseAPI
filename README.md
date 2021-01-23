@@ -63,18 +63,6 @@
   
 
 * I chose this architecture (MVC/REST) almost as a reflex to the requirements, as it is a widely used pattern that most other devs will recognize and easily be able to support, modify and extend.
-```puml
-@startuml component
-actor Buyer
-node Service
-node WebController
-database Storage
-
-Storage <-> Service
-Service <-> WebController
-WebController <-> Buyer
-@enduml
-```
 
 * The tech stack is: Java (11), SpringBoot (2.x)
   * I felt these technologies would be the most congenial option for a team already using SpringBoot.
