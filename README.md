@@ -53,7 +53,7 @@
 ##### A quick explanation of:
 ###### Your application, how you set it up, how it was built, how you designed the surge pricing and the type of architecture chosen.
 * The tech stack is: Java (11), SpringBoot (2.x), HTTP, JSON
-  * I felt these technologies would be the most congenial option for a team already using SpringBoot.
+  * I felt these technologies would be the best options for a team already using SpringBoot, such as yours (MIW).
   
 [//]: # (The CRLF above is needed, lest this comment become visible to readers; TODO: Add UML that clarifies the relationship between Item and InventoryItem)
 * I chose to implement a layered architecture with features of MVC and REST as I am very familiar with this style and it seemed applicable to the requirements. It is a widely used pattern that most developers will recognize and easily be able to support, modify and extend.
