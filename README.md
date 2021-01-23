@@ -63,9 +63,9 @@
   
 
 * I chose this architecture (MVC/REST) almost as a reflex to the requirements, as it is a widely used pattern that most other devs will recognize and easily be able to support, modify and extend.
-  * ![PlantUML model](http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
+  * ![API User interaction diagram](http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
 
-[//]: # (The above UML image was created using advice from: https://stackoverflow.com/a/32771815)
+[//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815)
 
 * The tech stack is: Java (11), SpringBoot (2.x)
   * I felt these technologies would be the most congenial option for a team already using SpringBoot.
