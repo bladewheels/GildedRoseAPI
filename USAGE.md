@@ -69,7 +69,7 @@
 
         2021-01-22 18:58:27.372  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : Starting TheGildedRoseExpanded using Java 11.0.9.1 on phoenix with PID 231213 (/home/mshields/projx/GildedRoseAPI/target/classes started by mshields in /home/mshields/projx/GildedRoseAPI)
         2021-01-22 18:58:27.374  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : No active profile set, falling back to default profiles: default
-        2021-01-22 18:58:28.177  INFO 231213 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+        2021-01-22 18:58:28.177  INFO 231213 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
         2021-01-22 18:58:28.188  INFO 231213 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
         2021-01-22 18:58:28.189  INFO 231213 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
         2021-01-22 18:58:28.237  INFO 231213 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
@@ -80,9 +80,9 @@
         2021-01-22 18:58:28.577  INFO 231213 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
         2021-01-22 18:58:28.730  INFO 231213 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
         2021-01-22 18:58:28.739  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : Started TheGildedRoseExpanded in 1.727 seconds (JVM running for 2.131)
-        2021-01-22 18:59:11.701  INFO 231213 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-        2021-01-22 18:59:11.701  INFO 231213 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-        2021-01-22 18:59:11.702  INFO 231213 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+        2021-01-22 18:59:11.701  INFO 231213 --- [nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+        2021-01-22 18:59:11.701  INFO 231213 --- [nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+        2021-01-22 18:59:11.702  INFO 231213 --- [nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
     ```
   * If SpringBoot fails to start due to *port already in use* you can override the default *8090* in **src/main/resources/application.properties**
 
@@ -181,7 +181,7 @@ It is *required* that the user of this API has **already** signed up with a vali
 
 #### Example Requests/Responses:
 * Try the **secured** Inventory API **w/o authentication**:
-    * curl http://localhost:8080/private/inventory/list
+    * curl http://localhost:8090/private/inventory/list
       * returns the JSON: 
           ``` JSON
             {
@@ -194,7 +194,7 @@ It is *required* that the user of this API has **already** signed up with a vali
           ```
 
 * Try *again* with an **invalid authentication token**:
-    * curl -H 'Authorization: Bearer asdf-qwerty-12345' http://localhost:8080/private/inventory/list
+    * curl -H 'Authorization: Bearer asdf-qwerty-12345' http://localhost:8090/private/inventory/list
         * returns the JSON:
             ``` JSON
               {
@@ -207,21 +207,21 @@ It is *required* that the user of this API has **already** signed up with a vali
             ```
           
 * Try to *register* for API use with an **unrecognized** (see Prerequisites & caveats, above) **email**:
-    * curl -X POST -d 'email=a.b@c.de' http://localhost:8080/public/users/register
+    * curl -X POST -d 'email=a.b@c.de' http://localhost:8090/public/users/register
         * returns the message:
           ```
           Sorry, that email address is not setup for shipping/billing - please visit https://gildedrose.com/accounts to set that up first.
           ```
                   
 * Register for API use with a **recognized email**:
-    * curl -X POST -d 'email=customer_x@go.to' http://localhost:8080/public/users/register
+    * curl -X POST -d 'email=customer_x@go.to' http://localhost:8090/public/users/register
       * returns the message containing an *authentication token*: 
         ```
         Welcome customer_x@go.to, please use the following API token to shop at Gilded Rose ===>eaa12ff9-db63-405a-bbe9-4edec303c98b<===.
         ```
         
 * GET the current Inventory w/valid authentication token:
-    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/list
+    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/list
         * returns the JSON:
             ``` JSON
               [
@@ -295,7 +295,7 @@ It is *required* that the user of this API has **already** signed up with a vali
             ```
 
 * Try to buy an Item, but using an **invalid** HTTP method (e.g. GET):
-    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/1/ofItem/5
+    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/1/ofItem/5
         * returns the JSON:
             ``` JSON
               {
@@ -308,7 +308,7 @@ It is *required* that the user of this API has **already** signed up with a vali
             ```         
           
 * Try to buy an Item, but using an **invalid** (i.e. non-numeric) **Item identifier**:
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/321/ofItem/xxx
+    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/321/ofItem/xxx
         * returns the JSON:
             ``` JSON
               {
@@ -325,7 +325,7 @@ The messaging here is a little opaque here due to the fact that a *DiscontinuedI
 Hopefully its enough to get a caller looking in the right direction...until I fix it.
       
 * Try to buy an Item, but using an **invalid** (i.e. non-numeric) quantity:
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/asdf/ofItem/1
+    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/asdf/ofItem/1
         * returns the JSON:
             ``` JSON
                 {
@@ -352,7 +352,7 @@ Similar to the last case (above), the messaging here is a little opaque here due
 Hopefully its enough to get a caller looking in the right direction...until I fix it.
 
 * Try to buy an Item, but using an **invalid** Item identifier (i.e. numeric, but not available from inventory):
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/321/ofItem/666
+    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/321/ofItem/666
         * returns the JSON:
             ``` JSON
                 {
@@ -365,7 +365,7 @@ Hopefully its enough to get a caller looking in the right direction...until I fi
             ```
 
 * Try to buy an Item, but asking for **more than we have in stock**:
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/4096/ofItem/5
+    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/4096/ofItem/5
         * returns the JSON:
             ``` JSON
                 {
@@ -388,7 +388,7 @@ Hopefully its enough to get a caller looking in the right direction...until I fi
             ```      
     
 * Buy 1 of an Item, at its *list* price:
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/1/ofItem/5
+    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/1/ofItem/5
         * returns the JSON:
             ``` JSON
               {
@@ -412,7 +412,7 @@ Hopefully its enough to get a caller looking in the right direction...until I fi
             ```      
 
 * Buy an Item, at its *surge* price (see Prerequisites & caveats, above):
-    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/2/ofItem/1
+    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/2/ofItem/1
         * returns the JSON:
             ``` JSON
               {
