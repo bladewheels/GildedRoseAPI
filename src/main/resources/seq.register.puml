@@ -1,3 +1,6 @@
 @startuml
 Buyer -> WebController : /register
+WebController -> UserService : save()
+WebController <-- UserService : return
+Buyer <-- WebController : API token
 @enduml
