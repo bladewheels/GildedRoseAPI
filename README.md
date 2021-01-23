@@ -36,7 +36,10 @@
       * otherwise, they can try again, requesting a lesser quantity
 
 
-#### Please model (and test!) accordingly. Using **a real database is not required**. 
+#### Please model (and test!) accordingly. Using **a real database is not required**.
+* Service-layer unit tests are **complete**
+* Controller-layer unit tests are currently **non-existent**
+* Integration tests are currently **non-existent**
 
 
 #### Deliverables:
