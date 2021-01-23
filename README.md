@@ -52,24 +52,14 @@
 
 ##### A quick explanation of:
 ###### Your application, how you set it up, how it was built, how you designed the surge pricing and the type of architecture chosen.
-* The application comprises 3 layers...
-  * public and private HTTP controllers offering 3 endpoints; see **USAGE.md** for details regarding their use
-  * a service layer for the controllers that marshals data, calculates surge pricing and tracks the viewing of Items
-  * a data layer that persists data, in-memory
+* The tech stack is: Java (11), SpringBoot (2.x)
+  * I felt these technologies would be the most congenial option for a team already using SpringBoot.
   
-
-* ...and an authentication service that restricts access to endpoints
-  
-
-* I chose to implement a layered architecture (MVC/REST) almost as a reflex to the requirements, as it is a widely used pattern that most other devs will recognize and easily be able to support, modify and extend.
-
 [//]: # (The CRLF above is needed, lest this comment become visible to readers; TODO: Add UML that clarifies the relationship between Item and InventoryItem)
-  * Use cases: 
-     * ![API User interaction diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Oqx3i8m40LxJW4NyFPKeK9qY1iuzXEsj5v7-r6kJr2gcMfcCS_gCVXowr8uAaBvsjmtknDftjEtUuir35gcECHJcODMpXLx0zZesRcYVgRXyNxHo5t8j9oYi1bQO7GKqlOVBP1wy0S0)
-  * Layered Architecture: 
+* I chose to implement a layered MVC/RESTish architecture, almost as a reflex to the requirements, as I am very familiar with this style. It is a widely used pattern that most developers will recognize and easily be able to support, modify and extend i.e.
     * ![Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
     * ![Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0)
-  
+
 [//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
 [//]: # (i.e. go to PlantUML website 
 e.g. http://www.plantuml.com/plantuml/uml/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0 
@@ -82,9 +72,16 @@ and put this e.g. :=>)
 [//]: # (DO NOT forget to change 'png' to 'svg' in the URL copy/pasted from the PlantUML form generator - or the URL will not work)
 [//]: # (Or, you can click on the Open SVG link and copy the URL from there)
 
-* The tech stack is: Java (11), SpringBoot (2.x)
-  * I felt these technologies would be the most congenial option for a team already using SpringBoot.
-  
+* Use cases:
+  * ![API User interaction diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Oqx3i8m40LxJW4NyFPKeK9qY1iuzXEsj5v7-r6kJr2gcMfcCS_gCVXowr8uAaBvsjmtknDftjEtUuir35gcECHJcODMpXLx0zZesRcYVgRXyNxHo5t8j9oYi1bQO7GKqlOVBP1wy0S0)
+
+* The application comprises 3 layers...
+  * public and private HTTP controllers offering 3 endpoints; see **USAGE.md** for details regarding their use
+  * a service layer for the controllers that marshals data, calculates surge pricing and tracks the viewing of Items
+  * a data layer that persists data, in-memory
+
+
+* ...and an authentication service that restricts access to endpoints
 
 * **Surge pricing** design:
   * I needed to persist the timestamps of recent *views* of inventory
