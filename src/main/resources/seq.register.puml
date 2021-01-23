@@ -4,7 +4,7 @@ actor Buyer
 
 Buyer -> WebController : /register
 WebController -> UserService : save()
-UserService -> UserService: Store in memory
+UserService->UserService: Store in memory
 WebController <-- UserService : return
 Buyer <-- WebController : API token
 @enduml
