@@ -67,7 +67,7 @@
         =========|_|==============|___/=/_/_/_/
         :: Spring Boot ::                (v2.4.2)
 
-        2021-01-22 18:58:27.372  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : Starting TheGildedRoseExpanded using Java 11.0.9.1 on phoenix with PID 231213 (/home/mshields/projx/GildedRoseAPI/target/classes started by mshields in /home/mshields/projx/GildedRoseAPI)
+        2021-01-22 18:58:27.372  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : Starting TheGildedRoseExpanded using Java 11.0.9.1 on localhost with PID 231213 (/YOUR_PATH/GildedRoseAPI/target/classes started by mshields in /home/mshields/projx/GildedRoseAPI)
         2021-01-22 18:58:27.374  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : No active profile set, falling back to default profiles: default
         2021-01-22 18:58:28.177  INFO 231213 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
         2021-01-22 18:58:28.188  INFO 231213 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
@@ -170,7 +170,7 @@ It is *required* that the user of this API has **already** signed up with a vali
 * All prices are represented by integer units e.g. pennies in US/Canadian terms
 * **Surge pricing** is a feature we implement to offset our costs when under high load. It is in effect when there have been more than 10 API calls to list our inventory over the course of the previous hour. *Surge pricing* is 110% of our normal list prices.
 
-### Trying out the API(s)
+### Trying out the API
 
 #### The following endpoints are available:
 | Use Case | HTTP Verb | Endpoint | Sequence Diagram |
