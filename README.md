@@ -63,7 +63,7 @@
   
 
 * I chose this architecture (MVC/REST) almost as a reflex to the requirements, as it is a widely used pattern that most other devs will recognize and easily be able to support, modify and extend.
-  * ![API User interaction diagram](http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
+  * ![API User interaction diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
 
 [//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815)
 
@@ -140,7 +140,7 @@
         * needs cleanup script to cull old views, @Scheduled?
    * ~~round *up* or *down* when calculating? e.g. 1.1 x 1225 = 1238 or 1237?~~
      * Math.floor()
-* generate API docs from test w/Spring Docs? [ ]
+* generate API docs from test w/Spring Docs? [Maybe...]
 * ~use H2 DB and persist to local file? [Neither]~
   * Or, just use HashMap as DB?
     * key on Item ID
