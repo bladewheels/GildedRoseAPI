@@ -62,11 +62,11 @@
     * ![Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
     * ![Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0)
 
-      * A public HTTP **controller** offering an [endpoint](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#the-following-endpoints-are-available) for registering new Users.
-      * A private HTTP **controller** offering [2 endpoints](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#the-following-endpoints-are-available) for listing or buying InventoryItems.
-      * A **Service* layer that manages the registration and authentication of Users.
-      * A **Service* layer that manage InventoryItems' data, surge pricing and views.
-      * A data layer that persists InventoryItems' data and surge pricing data, in-memory.
+      * A [public HTTP **Controller**](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/controllers/PublicUsersController.java) offering an [endpoint](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#the-following-endpoints-are-available) for registering new Users.
+      * A [private HTTP **Controller**](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/controllers/PrivateInventoryController.java) offering [2 endpoints](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#the-following-endpoints-are-available) for listing or buying InventoryItems.
+      * A [**Service** that manages the registration and authentication of Users](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/security/user/services/UserService.java).
+      * A [**Service** that manage InventoryItems' data, surge pricing and views](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InventoryService.java).
+      * A [**Service** that persists InventoryItems' data and surge pricing data, in-memory](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InventoryStorage.java).
   
 [//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
 [//]: # (i.e. go to PlantUML website 
