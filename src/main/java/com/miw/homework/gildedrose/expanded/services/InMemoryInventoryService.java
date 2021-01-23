@@ -148,6 +148,8 @@ public class InMemoryInventoryService implements InventoryService {
     }
 
     /**
+     * Determine if surge price is applicable and, if so, calculate it and return it;
+     * otherwise, just return the list price.
      *
      * @param price
      * @param dateTime
