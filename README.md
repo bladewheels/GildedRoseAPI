@@ -102,6 +102,7 @@ and put this e.g. :=>)
 ###### Choice of *data format*. Include one example of a request and response.
 * JSON serialization (w/Jackson)
   * See [USAGE.md](USAGE.md) for example Request/Responses
+    * [or, here](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#example-requestsresponses)
   
 ###### What *authentication mechanism* was chosen, and why? [X]
 * I had never used Spring Security before but:
