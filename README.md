@@ -91,7 +91,7 @@ and put this e.g. :=>)
     * ultimately I chose a thread-safe JDK Collection type as in-memory persistence
     * since the data access was so fast I simply *created/stored* the timestamp whenever the inventory was queried
   * I simply stream/filtered the *view timestamps* and determined the need for **Surge pricing** based upon the *size* of the result
-    * see the following methods at the bottom of [the Service implementation](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InMemoryInventoryService.java) for details:
+    * see the following methods at the bottom of [the Inventory Service implementation](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InMemoryInventoryService.java) for details:
       * getSurgeOrListPrice()
       * findNumberOfViews()
   

@@ -73,6 +73,9 @@ public class InMemoryInventoryService implements InventoryService {
         }
     }
 
+    /**
+     * TODO: Move this to the data layer
+     */
     @PostConstruct
     void init() {
         save(
@@ -139,7 +142,6 @@ public class InMemoryInventoryService implements InventoryService {
                 .stream()
                 .filter((d) -> {
                     return ChronoUnit.MINUTES.between(latestTime.minusHours(1), latestTime) <= maxMinutes;
-//                    return TimeUnit.MILLISECONDS.toMinutes(dateTime.getTime() - d.getTime()) <= filterMinutes;
                 })
                 .collect(toList())
                 .size();
