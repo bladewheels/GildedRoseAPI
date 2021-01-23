@@ -1,10 +1,20 @@
 @startuml component
-actor Buyer
-node Service
-node WebController
-database Storage
+title Registration, Browsing & Buying
 
-Buyer <-> WebController
-WebController <-> Service
-Service <-> Storage
+actor "API User"
+node "User Service"
+node "Public Controller"
+database "User Storage"
+
+"API User" <-> "Public Controller"
+"Public Controller" <-> "User Service"
+"User Service" <-> "User Storage"
+
+node "Inventory Service"
+node "Private Controller"
+database "Inventory Storage"
+
+"API User" <-> "Public Controller"
+"Private Controller" <-> "Inventory Service"
+"Inventory Service" <-> "Inventory Storage"
 @enduml
