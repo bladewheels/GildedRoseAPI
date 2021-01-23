@@ -101,7 +101,7 @@ and put this e.g. :=>)
     * I felt the *authentication mechanism* was my greatest unknown so I started my research on how-to there...
 ###### Choice of *data format*. Include one example of a request and response.
 * JSON serialization (w/Jackson)
-  * See [**USAGE.md**] (USAGE.md) for example Request/Responses
+  * See [USAGE.md] (USAGE.md) for example Request/Responses
   
 ###### What *authentication mechanism* was chosen, and why? [X]
 * I had never used Spring Security before but:
