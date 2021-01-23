@@ -52,11 +52,11 @@
 
 ##### A quick explanation of:
 ###### Your application, how you set it up, how it was built, how you designed the surge pricing and the type of architecture chosen.
-* The tech stack is: Java (11), SpringBoot (2.x)
+* The tech stack is: Java (11), SpringBoot (2.x), HTTP, JSON
   * I felt these technologies would be the most congenial option for a team already using SpringBoot.
   
 [//]: # (The CRLF above is needed, lest this comment become visible to readers; TODO: Add UML that clarifies the relationship between Item and InventoryItem)
-* I chose to implement a layered MVC/RESTish architecture, almost as a reflex to the requirements, as I am very familiar with this style. It is a widely used pattern that most developers will recognize and easily be able to support, modify and extend i.e.
+* I chose to implement a layered architecture with features of MVC and REST as I am very familiar with this style and it seems eminently applicable to the requirements. It is a widely used pattern that most developers will recognize and easily be able to support, modify and extend i.e.
     * ![Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
     * ![Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0)
 
