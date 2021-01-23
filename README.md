@@ -103,10 +103,10 @@ and put this e.g. :=>)
 * JSON serialization (w/Jackson)
   * See [USAGE.md](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#example-requestsresponses) for example Request/Responses.
   
-###### What *authentication mechanism* was chosen, and why? [X]
+###### What *authentication mechanism* was chosen, and why?
 * I had never used Spring Security before but:
   * I felt it would be the most acceptable option to a team already using Spring.
-  * I briefly searched for the simplest possible mechanism to start with, recognising that it should be able to be made more robust later.
+  * I briefly searched for the simplest possible mechanism to start with, recognising that it could probably be further hardened later.
     * props to this blog post/author:
       * https://octoperf.com/blog/2018/03/08/securing-rest-api-spring-security/
       * https://github.com/jloisel/securing-rest-api-spring-security
