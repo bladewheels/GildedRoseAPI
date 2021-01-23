@@ -4,7 +4,8 @@ actor Buyer
 
 Buyer -> WebController : /register
 WebController -> UserService : save()
-UserService->UserService: Store in memory
+' The following self-reference seems to defy web browser caching?!
+UserService -> UserService: Store in memory
 WebController <-- UserService : return
 Buyer <-- WebController : API token
 @enduml
