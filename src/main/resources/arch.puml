@@ -4,7 +4,7 @@ node Service
 node WebController
 database Storage
 
-Storage <-> Service
-Service <-> WebController
-WebController <-> Buyer
+Buyer <-> WebController
+WebController <-> Service
+Service <-> Storage
 @enduml
