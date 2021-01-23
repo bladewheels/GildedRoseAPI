@@ -56,10 +56,18 @@
   * I felt these technologies would be the most congenial option for a team already using SpringBoot.
   
 [//]: # (The CRLF above is needed, lest this comment become visible to readers; TODO: Add UML that clarifies the relationship between Item and InventoryItem)
-* I chose to implement a layered architecture with features of MVC and REST as I am very familiar with this style and it seems eminently applicable to the requirements. It is a widely used pattern that most developers will recognize and easily be able to support, modify and extend i.e.
+* I chose to implement a layered architecture with features of MVC and REST as I am very familiar with this style and it seems eminently applicable to the requirements. It is a widely used pattern that most developers will recognize and easily be able to support, modify and extend.
+  * The application broadly comprises 3 layers...
+
     * ![Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
     * ![Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0)
 
+      * A public HTTP **controller** offering an [endpoint](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#the-following-endpoints-are-available) for registering new Users.
+      * A private HTTP **controller** offering [2 endpoints](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#the-following-endpoints-are-available) for listing or buying InventoryItems.
+      * A **Service* layer that manages the registration and authentication of Users.
+      * A **Service* layer that manage InventoryItems' data, surge pricing and views.
+      * A data layer that persists InventoryItems' data and surge pricing data, in-memory.
+  
 [//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
 [//]: # (i.e. go to PlantUML website 
 e.g. http://www.plantuml.com/plantuml/uml/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0 
@@ -75,17 +83,10 @@ and put this e.g. :=>)
 * Use cases:
   * ![API User interaction diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Oqx3i8m40LxJW4NyFPKeK9qY1iuzXEsj5v7-r6kJr2gcMfcCS_gCVXowr8uAaBvsjmtknDftjEtUuir35gcECHJcODMpXLx0zZesRcYVgRXyNxHo5t8j9oYi1bQO7GKqlOVBP1wy0S0)
 
-* The application comprises 3 layers...
-  * public and private HTTP controllers offering 3 endpoints; see **USAGE.md** for details regarding their use
-  * a service layer for the controllers that marshals data, calculates surge pricing and tracks the viewing of Items
-  * a data layer that persists data, in-memory
-
-
-* ...and an authentication service that restricts access to endpoints
 
 * **Surge pricing** design:
   * I needed to persist the timestamps of recent *views* of inventory
-    * I was sorely tempted at first to use an in-memory DB like H2 to store them but it seemed a bit overkill for the requirements. 
+    * I was sorely tempted, at first, to use an in-memory DB like H2 to store them but it seemed a bit overkill for the requirements. 
       * And, I wasn't entirely sure you wouldn't spank me for bending the guidelines a bit 8^)
     * ultimately I chose a thread-safe JDK Collection type as in-memory persistence
     * since the data access was so fast I simply *created/stored* the timestamp whenever the inventory was queried
