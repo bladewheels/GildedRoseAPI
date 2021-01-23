@@ -54,7 +54,7 @@
 ##### A quick explanation of:
 ###### Your application, how you set it up, how it was built, how you designed the surge pricing and the type of architecture chosen.
 * The application comprises 3 layers...
-  * public and private HTTP controllers offering 3 endpoints, **see USAGE.md for details**
+  * public and private HTTP controllers offering 3 endpoints; see **USAGE.md** for details regarding their use
   * a service layer for the controllers that marshals data, calculates surge pricing and tracks the viewing of Items
   * a data layer that persists data, in-memory
   
@@ -63,9 +63,13 @@
   
 
 * I chose this architecture (MVC/REST) almost as a reflex to the requirements, as it is a widely used pattern that most other devs will recognize and easily be able to support, modify and extend.
-  * ![API User interaction diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
-
-[//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815)
+  * Use cases: 
+     * ![API User interaction diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Oqx3i8m40LxJW4NyFPKeK9qY1iuzXEsj5v7-r6kJr2gcMfcCS_gCVXowr8uAaBvsjmtknDftjEtUuir35gcECHJcODMpXLx0zZesRcYVgRXyNxHo5t8j9oYi1bQO7GKqlOVBP1wy0S0)
+  * Architecture: 
+    * ![Architecture: Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
+    * ![Architecture: Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=TBD)
+  
+[//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers browsers)
 
 * The tech stack is: Java (11), SpringBoot (2.x)
   * I felt these technologies would be the most congenial option for a team already using SpringBoot.

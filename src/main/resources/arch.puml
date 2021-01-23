@@ -1,20 +1,13 @@
 @startuml component
-title Registration, Browsing & Buying
+title Registration
+header Gilded Rose API ©2021
 
-actor "API User"
-node "User Service"
-node "Public Controller"
-database "User Storage"
+actor API_User
+node Public_Controller
+node User_Service
+database User_Storage
 
-"API User" <-> "Public Controller"
-"Public Controller" <-> "User Service"
-"User Service" <-> "User Storage"
-
-node "Inventory Service"
-node "Private Controller"
-database "Inventory Storage"
-
-"API User" <-> "Public Controller"
-"Private Controller" <-> "Inventory Service"
-"Inventory Service" <-> "Inventory Storage"
+API_User <-> Public_Controller
+Public_Controller <-> User_Service
+User_Service <-> User_Storage
 @enduml

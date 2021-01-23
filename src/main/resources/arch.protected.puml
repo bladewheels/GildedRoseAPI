@@ -1,0 +1,13 @@
+@startuml component
+title Browsing and Buying
+header Gilded Rose API ©2021
+
+actor API_User
+node Private_Controller
+node Inventory_Service
+database Inventory_Storage
+
+API_User <-> Private_Controller
+Private_Controller <-> Inventory_Service
+Inventory_Service <-> Inventory_Storage
+@enduml

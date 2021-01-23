@@ -1,11 +1,13 @@
 @startuml
 title Registration
-actor Buyer
+header Gilded Rose API ©2021
 
-Buyer -> WebController : /register
+actor API_User
+
+API_User -> WebController : /register
 WebController -> UserService : save()
 ' The following self-reference seems to defy web browser caching?!
 UserService -> UserService: Store in memory
 WebController <-- UserService : return
-Buyer <-- WebController : API token
+API_User <-- WebController : API token
 @enduml
