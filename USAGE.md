@@ -7,7 +7,7 @@
     * git
     * a v11 JDK
     * Maven
-    * TCP/IP port 8080 is available for use  
+    * TCP/IP port 8090 is available for use  
     * text editor of your choice
   
 ### Get the project sources and run the API server:
@@ -78,12 +78,15 @@
         2021-01-22 18:58:28.424  INFO 231213 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Or [Ant [pattern='/public/**'], Ant [pattern='/error/**']] with []
         2021-01-22 18:58:28.452  INFO 231213 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3f1ef9d6, org.springframework.security.web.context.SecurityContextPersistenceFilter@44065156, org.springframework.security.web.header.HeaderWriterFilter@9b9a327, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@574b7f4a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57cb70be, com.miw.homework.gildedrose.expanded.security.TokenAuthenticationFilter@767191b1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17461db, org.springframework.security.web.session.SessionManagementFilter@358ab600, org.springframework.security.web.access.ExceptionTranslationFilter@1f03fba0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@514de325]
         2021-01-22 18:58:28.577  INFO 231213 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-        2021-01-22 18:58:28.730  INFO 231213 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+        2021-01-22 18:58:28.730  INFO 231213 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
         2021-01-22 18:58:28.739  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : Started TheGildedRoseExpanded in 1.727 seconds (JVM running for 2.131)
         2021-01-22 18:59:11.701  INFO 231213 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
         2021-01-22 18:59:11.701  INFO 231213 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
         2021-01-22 18:59:11.702  INFO 231213 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
     ```
+  * If SpringBoot fails to start due to *port already in use* you can override the default *8090* in **src/main/resources/application.properties**
+
+
   * Press Ctrl-C or close the terminal to stop the server, you may see:
     ```
         2021-01-22 19:16:54.253  INFO 231213 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
