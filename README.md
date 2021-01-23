@@ -67,9 +67,14 @@
      * ![API User interaction diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Oqx3i8m40LxJW4NyFPKeK9qY1iuzXEsj5v7-r6kJr2gcMfcCS_gCVXowr8uAaBvsjmtknDftjEtUuir35gcECHJcODMpXLx0zZesRcYVgRXyNxHo5t8j9oYi1bQO7GKqlOVBP1wy0S0)
   * Architecture: 
     * ![Architecture: Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
-    * ![Architecture: Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/png/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0)
+    * ![Architecture: Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0)
   
-[//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers browsers)
+[//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
+[//]: # (i.e. go to plantUML website and put this into the form to generate the plantUML URL used above..)
+[//]: # (@startuml
+!includeurl https://raw.githubusercontent.com/bladewheels/GildedRoseAPI/main/src/main/resources/arch.protected.puml
+@enduml)
+[//]: # (DO NOT forget to change 'png' to 'svg' in the URL copy/pasted from the PlantUML form generator - or the URL will not work)
 
 * The tech stack is: Java (11), SpringBoot (2.x)
   * I felt these technologies would be the most congenial option for a team already using SpringBoot.
