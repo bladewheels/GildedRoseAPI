@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+actor "API User" as user
+rectangle "Gilded Rose API" {
+  usecase "Register" as UC1
+  usecase "Browse" as UC2
+  usecase "Buy" as UC3
+}
+user --> UC1
+user --> UC2
+user --> UC3
+@enduml
