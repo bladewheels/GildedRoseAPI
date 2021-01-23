@@ -1,5 +1,5 @@
 @startuml component
-title Browsing and Buying
+title Shopping
 header Gilded Rose API ©2021
 
 actor API_User
