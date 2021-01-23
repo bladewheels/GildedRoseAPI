@@ -62,7 +62,7 @@
 * ...and an authentication service that restricts access to endpoints
   
 
-* I chose this architecture (MVC/REST) almost as a reflex to the requirements, as it is a widely used pattern that most other devs will recognize and easily be able to support, modify and extend.
+* I chose to implement a layered architecture (MVC/REST) almost as a reflex to the requirements, as it is a widely used pattern that most other devs will recognize and easily be able to support, modify and extend.
 
 [//]: # (The CRLF above is needed, lest this comment become visible to readers; TODO: Add UML that clarifies the relationship between Item and InventoryItem)
   * Use cases: 
