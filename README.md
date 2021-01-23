@@ -65,9 +65,9 @@
 * I chose this architecture (MVC/REST) almost as a reflex to the requirements, as it is a widely used pattern that most other devs will recognize and easily be able to support, modify and extend.
   * Use cases: 
      * ![API User interaction diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Oqx3i8m40LxJW4NyFPKeK9qY1iuzXEsj5v7-r6kJr2gcMfcCS_gCVXowr8uAaBvsjmtknDftjEtUuir35gcECHJcODMpXLx0zZesRcYVgRXyNxHo5t8j9oYi1bQO7GKqlOVBP1wy0S0)
-  * Architecture: 
-    * ![Architecture: Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
-    * ![Architecture: Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0)
+  * Layered Architecture: 
+    * ![Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
+    * ![Shopping](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0)
   
 [//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
 [//]: # (i.e. go to plantUML website and put this into the form to generate the plantUML URL used above..)
