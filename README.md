@@ -43,7 +43,6 @@
 
 
 #### Deliverables:
-###### **The following are documented in USAGE.md**:
 * A runnable system with [instructions on how to build/run your application](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#build--run)
 * The application should be built using Java and the Spring framework
 * The application should be able to be [run from the command line](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#get-the-project-sources-and-run-the-api-server) without any dependencies or database’s required to run your application.  (Other than maven, gradle and Java)
