@@ -56,7 +56,7 @@
   * I felt these technologies would be the best options for a team already using SpringBoot, such as yours (MIW).
   
 [//]: # (The CRLF above is needed, lest this comment become visible to readers; TODO: Add UML that clarifies the relationship between Item and InventoryItem)
-* I chose to implement a layered architecture with features of MVC and REST as I am very familiar with this style and it seemed applicable to the requirements. It is a widely used pattern that most developers will recognize and easily be able to support, modify and extend.
+* I chose to implement a layered architecture with features of MVC and REST as I am very familiar with this style and it seemed applicable to the requirements. It is a widely used pattern that many developers will easily recognize and be able to support, modify and extend.
   * The application broadly comprises 3 layers i.e. web wrangling, business logic and data storage:
 
     * ![Registration](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqz3i8m34VndLF01UgTgKo83N63rFcBH7ASoX_gzG4nlRVzLezYaKDEbwuiMP4cvnQn-vN8oh6yUxJSqc4yDQ2ny1oqIQau6Y1EzouLzJKTj-U3HkbARlmVWyyqXbCnRil-arPe_VO3)
