@@ -1,0 +1,10 @@
+@startuml component
+actor Buyer
+node Service
+node WebController
+database Storage
+
+Storage <-> Service
+Service <-> WebController
+WebController <-> Buyer
+@enduml
