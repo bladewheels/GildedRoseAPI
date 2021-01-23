@@ -38,8 +38,8 @@
 
 #### Please model (and test!) accordingly. Using **a real database is not required**.
 * Service-layer unit tests are **complete**
-* Controller-layer unit tests are currently **non-existent**
-* Integration tests are currently **non-existent**
+* Controller-layer unit tests are currently **not committed to the github repo**
+* Integration tests are currently **manually done w/curl**, see [here](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#example-requestsresponses)
 
 
 #### Deliverables:
