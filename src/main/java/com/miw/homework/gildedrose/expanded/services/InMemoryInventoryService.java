@@ -131,11 +131,11 @@ public class InMemoryInventoryService implements InventoryService {
     }
 
     /**
-     * Return a count of the number of times the Inventory was viewed over a period of time.
+     * Filter the date/times the Inventory was viewed and return a count of the instances.
      *
      * @param maxMinutes number of minutes before latestTime to filter the view date/time(s)
      * @param latestTime end of the period of time to consider
-     * @return
+     * @return a count of the number of times the Inventory was viewed over a period of time.
      */
     int findNumberOfViews(int maxMinutes, LocalDateTime latestTime) {
         return storage.getViews()
@@ -153,7 +153,7 @@ public class InMemoryInventoryService implements InventoryService {
      *
      * @param price
      * @param dateTime
-     * @return
+     * @return a surge or list price
      */
     int getSurgeOrListPrice(int price, LocalDateTime dateTime) {
         return (findNumberOfViews(SURGE_MINUTES, dateTime) > SURGE_VIEW_COUNT)
