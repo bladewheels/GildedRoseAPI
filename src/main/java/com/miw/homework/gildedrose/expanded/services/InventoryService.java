@@ -7,11 +7,25 @@ import com.miw.homework.gildedrose.expanded.models.ordered.OrderedItem;
 import java.util.List;
 
 /**
- * Offers a couple of CRUD operations on the inventory.
+ * Do some CRUD operations on the inventory.
  */
 public interface InventoryService {
 
+    int OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY = 3;
+
+    /**
+     * Get a {@List} of {@InventoryItem}s.
+     *
+     * @return a {@List} of {@InventoryItem}s
+     */
     List<InventoryItem> findAll();
 
+    /**
+     * Buy some quantity of an {@InventoryItem}.
+     *
+     * @param quantity
+     * @param inventoriedItemId
+     * @return
+     */
     OrderedItem buy(int quantity, int inventoriedItemId);
 }

@@ -3,12 +3,16 @@ package com.miw.homework.gildedrose.expanded.models.ordered;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.miw.homework.gildedrose.expanded.models.InventoryItem;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Setter;
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 import java.io.Serializable;
 
 import static java.util.Objects.requireNonNull;
+import static lombok.AccessLevel.PACKAGE;
 
 /**
  * This class represents a response to an API user who has successfully bought an {@link InventoryItem}.
@@ -19,12 +23,12 @@ public class PurchasedItem implements Serializable, OrderedItem {
     private static final long serialVersionUID = 1L;
     private static final String SURGE_PRICING_WARNING = "Surge pricing may have inflated the list price of this Item.";
 
-    String orderId;
+    @NonFinal String orderId;
     InventoryItem itemFromInventory;
     int quantity;
     int priceEach;
     int totalCharged;
-    final String notice = SURGE_PRICING_WARNING;
+    String notice = SURGE_PRICING_WARNING;
 
     @JsonCreator
     public PurchasedItem(@JsonProperty("orderId") final String orderId,
@@ -37,5 +41,10 @@ public class PurchasedItem implements Serializable, OrderedItem {
         this.quantity = requireNonNull(quantity);
         this.priceEach = requireNonNull(priceEach);
         this.totalCharged = requireNonNull(totalCharged);
+    }
+
+    // For unit testing ease
+    public void setOrderId(String value) {
+        orderId = value;
     }
 }

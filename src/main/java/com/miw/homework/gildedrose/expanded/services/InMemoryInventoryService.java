@@ -23,8 +23,7 @@ import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
 /**
- * A service class that encapsulates some data structures for representing the inventory state
- * and offers methods to manipulate the same; implements surge pricing when applicable.
+ * A service that supports retrieving the current inventory state and buying items; implements surge pricing when applicable.
  */
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = PACKAGE)
@@ -40,7 +39,7 @@ public class InMemoryInventoryService implements InventoryService {
 
     @Override
     public List<InventoryItem> findAll() {
-        storage.incrementViewsWithThisDate(LocalDateTime.now());
+        storage.incrementViews(LocalDateTime.now());
         return storage.getAllInventoryItems()
                 .values()
                 .stream()
@@ -49,9 +48,8 @@ public class InMemoryInventoryService implements InventoryService {
     }
 
     @Override
-    public OrderedItem buy(int quantity, int inventoriedItemId) {
-
-        InventoryItem inventoriedItem = storage.getInventoryItem(inventoriedItemId);
+    public OrderedItem buy(int quantity, int id) {
+        InventoryItem inventoriedItem = storage.getInventoryItemById(id);
         // TODO: REVIEW: Consider using Optional here...
         if (null != inventoriedItem) {
             int currentStockLevel = inventoriedItem.getStockLevel().intValue();
@@ -59,15 +57,9 @@ public class InMemoryInventoryService implements InventoryService {
             if (currentStockLevel >= quantity) { // Happy path...
                 inventoriedItem.getStockLevel().subtract(quantity);
                 int priceEach = getSurgeOrListPrice(inventoriedItem.getItem().getPrice(), LocalDateTime.now());
-                return PurchasedItem
-                        .builder()
-                        .orderId(UUID.randomUUID().toString())
-                        .quantity(quantity)
-                        .itemFromInventory(inventoriedItem)
-                        .priceEach(priceEach)
-                        .totalCharged(quantity * priceEach)
-                        .build();
-            } else { // TODO: REVIEW: Consider throwing custom Exceptions here and let the controller formulate an appropriate response
+                return new PurchasedItem(UUID.randomUUID().toString(), inventoriedItem, quantity, priceEach, quantity*priceEach);
+            }
+            else { // TODO: REVIEW: Consider throwing custom Exceptions here instead and let the controller formulate an appropriate response
                 return UnderStockedItem
                         .builder()
                         .orderId(INVALID_ORDER_ID)
@@ -110,7 +102,7 @@ public class InMemoryInventoryService implements InventoryService {
         );
     }
 
-    private Item createItem(int id, String name, String description, int price) {
+    Item createItem(int id, String name, String description, int price) {
         return Item
                 .builder()
                 .id(id)
@@ -120,9 +112,9 @@ public class InMemoryInventoryService implements InventoryService {
                 .build();
     }
 
-    private InventoryItem createInventoryItem(int id, Item item) {
+    InventoryItem createInventoryItem(int id, Item item) {
         StockLevelAwareLongAdder quantity = new StockLevelAwareLongAdder();
-        quantity.add(new Random().nextInt(256));
+        if (OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY != id) /* Make non-zero for the purposes of simple unit testing */ { quantity.add(new Random().nextInt(256) + 10); }
         return InventoryItem
                 .builder()
                 .id(id)
@@ -153,9 +145,26 @@ public class InMemoryInventoryService implements InventoryService {
                 .size();
     }
 
+    /**
+     *
+     * @param price
+     * @param dateTime
+     * @return
+     */
     int getSurgeOrListPrice(int price, LocalDateTime dateTime) {
         return (findNumberOfViews(SURGE_MINUTES, dateTime) > SURGE_VIEW_COUNT)
                 ? (int) Math.floor(SURGE_PRICE_MULTIPLIER * price)
                 : price;
     }
+
+//    PurchasedItem getPurchasedItem(String id, int quantity, InventoryItem  item, int price) {
+//        return PurchasedItem
+//                .builder()
+//                .orderId(id)
+//                .quantity(quantity)
+//                .itemFromInventory(item)
+//                .priceEach(price)
+//                .totalCharged(quantity * price)
+//                .build();
+//    }
 }

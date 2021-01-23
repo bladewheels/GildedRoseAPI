@@ -12,30 +12,31 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Component
-public class InMemoryInventoryStorage {
+public class InMemoryInventoryStorage implements InventoryStorage {
 
-    private Map<Integer, InventoryItem> items = new ConcurrentHashMap<>();
     // Currently, this List grows without bound...
     // TODO: Prune this list, we only need Dates from the last SURGE_MINUTES or so.
     private List<LocalDateTime> views = new CopyOnWriteArrayList<>();
-// LocalDateTime.now()
-    public void incrementViewsWithThisDate(LocalDateTime dateTime) {
-        views.add(dateTime);
-    }
+    private Map<Integer, InventoryItem> items = new ConcurrentHashMap<>();
 
+    @Override
+    public void incrementViews(LocalDateTime dateTime) { views.add(dateTime); }
+
+    @Override
     public Collection<LocalDateTime> getViews() {
         return views;
     }
 
+    @Override
     public Map<Integer, InventoryItem> getAllInventoryItems() {
         return items;
     }
 
-    public InventoryItem getInventoryItem(int inventoriedItemId) {
-        return items.get(inventoriedItemId);
-    }
-
+    @Override
     public void addInventoryItem(int id, InventoryItem inventoriedItem) {
         items.put(id, inventoriedItem);
     }
+
+    @Override
+    public InventoryItem getInventoryItemById(int id) { return items.get(id); }
 }

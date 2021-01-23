@@ -1,5 +1,10 @@
 package com.miw.homework.gildedrose.expanded.services;
 
+import com.miw.homework.gildedrose.expanded.models.InventoryItem;
+import com.miw.homework.gildedrose.expanded.models.Item;
+import com.miw.homework.gildedrose.expanded.models.ordered.DiscontinuedItem;
+import com.miw.homework.gildedrose.expanded.models.ordered.PurchasedItem;
+import com.miw.homework.gildedrose.expanded.models.ordered.UnderStockedItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +17,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static com.miw.homework.gildedrose.expanded.models.ordered.OrderedItem.INVALID_ORDER_ID;
 import static com.miw.homework.gildedrose.expanded.services.InMemoryInventoryService.SURGE_MINUTES;
 import static com.miw.homework.gildedrose.expanded.services.InMemoryInventoryService.SURGE_VIEW_COUNT;
+import static com.miw.homework.gildedrose.expanded.services.InventoryService.OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -32,8 +39,56 @@ class InMemoryInventoryServiceTest {
     }
 
     @Test
-    void buy() {
-        // TODO: Implementation
+    void buyOutOfStockItem() {
+        int price = 333;
+        int quantity = 7;
+        Item item = sut.createItem(66, "Foo", "Bar, bar none.", price);
+        InventoryItem inventoryItem = sut.createInventoryItem(OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY, item);
+
+        UnderStockedItem expected = new UnderStockedItem(INVALID_ORDER_ID, inventoryItem, quantity, 0);
+        when(db.getInventoryItemById(OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY)).thenReturn(inventoryItem);
+        UnderStockedItem actual = (UnderStockedItem) sut.buy(quantity, OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY);
+
+        assertEquals(expected, actual,  "It should be equal.");
+    }
+
+    @Test
+    void buyTooManyItems() {
+        int price = 333;
+        int quantity = 777_777;
+        Item item = sut.createItem(66, "Foo", "Bar, bar none.", price);
+        InventoryItem inventoryItem = sut.createInventoryItem(3, item);
+
+        UnderStockedItem expected = new UnderStockedItem(INVALID_ORDER_ID, inventoryItem, quantity, 0);
+        when(db.getInventoryItemById(3)).thenReturn(inventoryItem);
+        UnderStockedItem actual = (UnderStockedItem) sut.buy(quantity, 3);
+
+        assertEquals(expected, actual,  "It should be equal.");
+    }
+
+    @Test
+    void buyNeverStockedItem() {
+        int id = 333_333;
+        int price = 333;
+        int quantity = 666;
+        Item item = sut.createItem(66, "Foo", "Bar, bar none.", price);
+        InventoryItem inventoryItem = sut.createInventoryItem(id, item);
+
+        DiscontinuedItem expected = new DiscontinuedItem();
+        when(db.getInventoryItemById(3)).thenReturn(inventoryItem);
+        DiscontinuedItem actual = (DiscontinuedItem) sut.buy(quantity, id);
+
+        assertEquals(expected, actual,  "It should be equal.");
+    }
+
+    @Test
+    void buy_1_ItemAtListPrice() {
+        buyItemAndAssertEquals(666, 1234, 1);
+    }
+
+    @Test
+    void buy_10_ItemsAtListPrice() {
+        buyItemAndAssertEquals(2, 1234, 10);
     }
 
     @Test
@@ -78,6 +133,31 @@ class InMemoryInventoryServiceTest {
         assertEquals(expected, actual, expected + "Surge price should have been returned.");
     }
 
+    private void buyItemAndAssertEquals(int id, int price, int quantity) {
+        // TODO: Move the construction of these types from the Service layer to the DB layer:
+        Item item = sut.createItem(66, "Foo", "Bar, bar none.", price);
+        InventoryItem inventoryItem = sut.createInventoryItem(id, item);
+
+        PurchasedItem expected = new PurchasedItem("Baz", inventoryItem, quantity, price, quantity * price);
+        when(db.getInventoryItemById(id)).thenReturn(inventoryItem);
+        PurchasedItem actual = (PurchasedItem) sut.buy(quantity, id);
+
+        ignoreOrderId(expected, actual);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Workaround for != OrderIds in tests,
+     * simply copies the service-generated OrderId
+     * from the actual PurchasedItem to the expected PurchasedItem.
+     *
+     * @param expected the expected PurchasedItem
+     * @param actual the actual PurchasedItem
+     */
+    private void ignoreOrderId(PurchasedItem expected, PurchasedItem actual) {
+        expected.setOrderId(actual.getOrderId());
+    }
+
     /**
      * Mock the representation of a number of views of the inventory over a period of time.
      *
@@ -92,14 +172,4 @@ class InMemoryInventoryServiceTest {
                 : IntStream.rangeClosed(0, views - 1).mapToObj(i -> { return now.minusMinutes(i); }).collect(Collectors.toList())
         ;
     }
-
-//    private void retrieveInventoryMultipleTimes(int timesToCall) {
-//        IntStream
-//            .rangeClosed(1, timesToCall)
-//            .parallel()
-//            .forEach(i -> {
-//                sut.findAll();
-//            })
-//        ;
-//    }
 }
