@@ -157,14 +157,4 @@ public class InMemoryInventoryService implements InventoryService {
                 : price;
     }
 
-//    PurchasedItem getPurchasedItem(String id, int quantity, InventoryItem  item, int price) {
-//        return PurchasedItem
-//                .builder()
-//                .orderId(id)
-//                .quantity(quantity)
-//                .itemFromInventory(item)
-//                .priceEach(price)
-//                .totalCharged(quantity * price)
-//                .build();
-//    }
 }
