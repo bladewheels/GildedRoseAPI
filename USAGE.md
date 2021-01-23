@@ -1,3 +1,159 @@
+# Build & Run
+
+## Prerequisites
+* A computer with: 
+  * internet access
+  * some development tools:
+    * git
+    * a v11 JDK
+    * Maven
+    * TCP/IP port 8080 is available for use  
+    * text editor of your choice
+  
+### Get the project sources and run the API server:
+  * open a terminal on your favoured OS and execute the following to build and run the server:
+    ```
+        git clone git@github.com:bladewheels/GildedRoseAPI.git
+        cd GildedRoseAPI
+        mvn spring-boot:run
+    ```
+  * you should see *something* like this (AFAIK the WARNINGs do not affect the behaviour of the server at this time):  
+    ```
+        WARNING: An illegal reflective access operation has occurred
+        WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/usr/share/maven/lib/guice.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+        WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+        WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+        WARNING: All illegal access operations will be denied in a future release
+        [INFO] Scanning for projects...
+        [INFO]
+        [INFO] ---------------< com.miw.homework:sr-java-dev-homework >----------------
+        [INFO] Building sr-java-dev-homework 0.0.1-SNAPSHOT
+        [INFO] --------------------------------[ jar ]---------------------------------
+        [INFO]
+        [INFO] >>> spring-boot-maven-plugin:2.4.1:run (default-cli) > test-compile @ sr-java-dev-homework >>>
+        [INFO]
+        [INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ sr-java-dev-homework ---
+        [INFO] Using 'UTF-8' encoding to copy filtered resources.
+        [INFO] Using 'UTF-8' encoding to copy filtered properties files.
+        [INFO] Copying 1 resource
+        [INFO] Copying 0 resource
+        [INFO]
+        [INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ sr-java-dev-homework ---
+        [INFO] Changes detected - recompiling the module!
+        [INFO] Compiling 24 source files to /YOUR_PATH/GildedRoseAPI/target/classes
+        [INFO] /YOUR_PATH/GildedRoseAPI/src/main/java/com/miw/homework/gildedrose/expanded/security/SecurityConfig.java: /YOUR_PATH/GildedRoseAPI/src/main/java/com/miw/homework/gildedrose/expanded/security/SecurityConfig.java uses unchecked or unsafe operations.
+        [INFO] /YOUR_PATH/GildedRoseAPI/src/main/java/com/miw/homework/gildedrose/expanded/security/SecurityConfig.java: Recompile with -Xlint:unchecked for details.
+        [INFO]  
+        [INFO] --- maven-resources-plugin:3.2.0:testResources (default-testResources) @ sr-java-dev-homework ---
+        [INFO] Using 'UTF-8' encoding to copy filtered resources.
+        [INFO] Using 'UTF-8' encoding to copy filtered properties files.
+        [INFO] skip non existing resourceDirectory /YOUR_PATH/GildedRoseAPI/src/test/resources
+        [INFO]
+        [INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ sr-java-dev-homework ---
+        [INFO] Changes detected - recompiling the module!
+        [INFO] Compiling 2 source files to /YOUR_PATH/GildedRoseAPI/target/test-classes
+        [INFO]
+        [INFO] <<< spring-boot-maven-plugin:2.4.1:run (default-cli) < test-compile @ sr-java-dev-homework <<<
+        [INFO]
+        [INFO]
+        [INFO] --- spring-boot-maven-plugin:2.4.1:run (default-cli) @ sr-java-dev-homework ---
+        [INFO] Attaching agents: []
+
+        .   ____          _            __ _ _
+        /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+        ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+        \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+        '  |____| .__|_| |_|_| |_\__, | / / / /
+        =========|_|==============|___/=/_/_/_/
+        :: Spring Boot ::                (v2.4.2)
+
+        2021-01-22 18:58:27.372  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : Starting TheGildedRoseExpanded using Java 11.0.9.1 on phoenix with PID 231213 (/home/mshields/projx/GildedRoseAPI/target/classes started by mshields in /home/mshields/projx/GildedRoseAPI)
+        2021-01-22 18:58:27.374  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : No active profile set, falling back to default profiles: default
+        2021-01-22 18:58:28.177  INFO 231213 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+        2021-01-22 18:58:28.188  INFO 231213 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+        2021-01-22 18:58:28.189  INFO 231213 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+        2021-01-22 18:58:28.237  INFO 231213 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+        2021-01-22 18:58:28.238  INFO 231213 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 816 ms
+        2021-01-22 18:58:28.343  INFO 231213 --- [           main] o.s.boot.web.servlet.RegistrationBean    : Filter tokenAuthenticationFilter was not registered (disabled)
+        2021-01-22 18:58:28.424  INFO 231213 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Or [Ant [pattern='/public/**'], Ant [pattern='/error/**']] with []
+        2021-01-22 18:58:28.452  INFO 231213 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3f1ef9d6, org.springframework.security.web.context.SecurityContextPersistenceFilter@44065156, org.springframework.security.web.header.HeaderWriterFilter@9b9a327, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@574b7f4a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57cb70be, com.miw.homework.gildedrose.expanded.security.TokenAuthenticationFilter@767191b1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17461db, org.springframework.security.web.session.SessionManagementFilter@358ab600, org.springframework.security.web.access.ExceptionTranslationFilter@1f03fba0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@514de325]
+        2021-01-22 18:58:28.577  INFO 231213 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+        2021-01-22 18:58:28.730  INFO 231213 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+        2021-01-22 18:58:28.739  INFO 231213 --- [           main] c.m.h.g.expanded.TheGildedRoseExpanded   : Started TheGildedRoseExpanded in 1.727 seconds (JVM running for 2.131)
+        2021-01-22 18:59:11.701  INFO 231213 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+        2021-01-22 18:59:11.701  INFO 231213 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+        2021-01-22 18:59:11.702  INFO 231213 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+    ```
+  * Press Ctrl-C or close the terminal to stop the server, you may see:
+    ```
+        2021-01-22 19:16:54.253  INFO 231213 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+        [INFO] ------------------------------------------------------------------------
+        [INFO] BUILD SUCCESS
+        [INFO] ------------------------------------------------------------------------
+        [INFO] Total time:  18:32 min
+        [INFO] Finished at: 2021-01-22T19:16:54-07:00
+        [INFO] ------------------------------------------------------------------------
+    ```
+  * Tests can also be run from the commandline e.g. **mvn install**
+    ```
+        WARNING: An illegal reflective access operation has occurred
+        WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/usr/share/maven/lib/guice.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+        WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+        WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+        WARNING: All illegal access operations will be denied in a future release
+        [INFO] Scanning for projects...
+        [INFO]
+        [INFO] ---------------< com.miw.homework:sr-java-dev-homework >----------------
+        [INFO] Building sr-java-dev-homework 0.0.1-SNAPSHOT
+        [INFO] --------------------------------[ jar ]---------------------------------
+        [INFO]
+        [INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ sr-java-dev-homework ---
+        [INFO] Using 'UTF-8' encoding to copy filtered resources.
+        [INFO] Using 'UTF-8' encoding to copy filtered properties files.
+        [INFO] Copying 1 resource
+        [INFO] Copying 0 resource
+        [INFO]
+        [INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ sr-java-dev-homework ---
+        [INFO] Nothing to compile - all classes are up to date
+        [INFO]
+        [INFO] --- maven-resources-plugin:3.2.0:testResources (default-testResources) @ sr-java-dev-homework ---
+        [INFO] Using 'UTF-8' encoding to copy filtered resources.
+        [INFO] Using 'UTF-8' encoding to copy filtered properties files.
+        [INFO] skip non existing resourceDirectory /YOUR_PATH/GildedRoseAPI/src/test/resources
+        [INFO]
+        [INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ sr-java-dev-homework ---
+        [INFO] Changes detected - recompiling the module!
+        [INFO] Compiling 2 source files to /YOUR_PATH/GildedRoseAPI/target/test-classes
+        [INFO]
+        [INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ sr-java-dev-homework ---
+        [INFO]
+        [INFO] -------------------------------------------------------
+        [INFO]  T E S T S
+        [INFO] -------------------------------------------------------
+        [INFO] Running com.miw.homework.gildedrose.expanded.services.InMemoryInventoryServiceTest
+        [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.723 s - in com.miw.homework.gildedrose.expanded.services.InMemoryInventoryServiceTest
+        [INFO]
+        [INFO] Results:
+        [INFO]
+        [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0
+        [INFO]
+        [INFO]
+        [INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ sr-java-dev-homework ---
+        [INFO] Building jar: /YOUR_PATH/GildedRoseAPI/target/sr-java-dev-homework-0.0.1-SNAPSHOT.jar
+        [INFO]
+        [INFO] --- spring-boot-maven-plugin:2.4.1:repackage (repackage) @ sr-java-dev-homework ---
+        [INFO] Replacing main artifact with repackaged archive
+        [INFO]
+        [INFO] --- maven-install-plugin:2.5.2:install (default-install) @ sr-java-dev-homework ---
+        [INFO] Installing /YOUR_PATH/GildedRoseAPI/target/sr-java-dev-homework-0.0.1-SNAPSHOT.jar to /YOUR_PATH/.m2/repository/com/miw/homework/sr-java-dev-homework/0.0.1-SNAPSHOT/sr-java-dev-homework-0.0.1-SNAPSHOT.jar
+        [INFO] Installing /YOUR_PATH/GildedRoseAPI/pom.xml to /YOUR_PATH/.m2/repository/com/miw/homework/sr-java-dev-homework/0.0.1-SNAPSHOT/sr-java-dev-homework-0.0.1-SNAPSHOT.pom
+        [INFO] ------------------------------------------------------------------------
+        [INFO] BUILD SUCCESS
+        [INFO] ------------------------------------------------------------------------
+        [INFO] Total time:  7.738 s
+        [INFO] Finished at: 2021-01-22T19:23:42-07:00
+        [INFO] ------------------------------------------------------------------------
+    ```
 # Prerequisites & caveats for API usage:
 It is *required* that the user of this API has **already** signed up with a valid email address *(for the purposes of Billing/Shipping)* with our corporate office at https://gildedrose.com/accounts .
 
@@ -163,7 +319,7 @@ It is *required* that the user of this API has **already** signed up with a vali
 The messaging here is a little opaque here due to the fact that a *DiscontinuedItem* model is being re-used here 
 (I'm too lazy/busy to improve it for now, there's a TODO in the source code). 
 
-Hopefully its enough to get a caller looking in the right direction...
+Hopefully its enough to get a caller looking in the right direction...until I fix it.
       
 * Try to buy an Item, but using an **invalid** (i.e. non-numeric) quantity:
     * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/asdf/ofItem/1
@@ -187,10 +343,10 @@ Hopefully its enough to get a caller looking in the right direction...
                     "notice":"Sorry, we don't have enough of this Item in stock at the moment - please try again later or purchase less Items."
                 }
             ```      
-Similarly to the last case (above) the messaging here is a little opaque here due to the fact that a *UnderStockedItem* model is being re-used here 
+Similar to the last case (above), the messaging here is a little opaque here due to the fact that a *UnderStockedItem* model is being re-used here 
 (I'm too lazy/busy to improve it for now, there's a TODO in the source code).
 
-Hopefully its enough to get a caller looking in the right direction...
+Hopefully its enough to get a caller looking in the right direction...until I fix it.
 
 * Try to buy an Item, but using an **invalid** Item identifier (i.e. numeric, but not available from inventory):
     * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8080/private/inventory/buy/321/ofItem/666
