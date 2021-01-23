@@ -1,4 +1,7 @@
 @startuml
+title Registration
+actor Buyer
+
 Buyer -> WebController : /register
 WebController -> UserService : save()
 WebController <-- UserService : return
