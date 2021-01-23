@@ -177,7 +177,14 @@ It is *required* that the user of this API has **already** signed up with a vali
 | :------- | :-------- | :------: | :------: |
 | **Register** with a valid email address | POST | /public/users/register | ![Registration sequence diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqx3i8m40RXdbF01RmzLQWG7U86ZlqhjhHUXtqermT4DTDzYtbMZy6dIvV2KH7Av-Q-svL8yv6sxYtMC6YPuX1FPGvQELSS3M2ZU-UA-fg6s_D18tSXq_8VXStG0YF3EocsRWvD-qzS8FNR3m00) |
 | **Retrieve** a complete list of Items | GET | /private/inventory/list | TBD |
-| **Buy** a quantity of an Item -- i.e. by Item ID; these IDs are exposed in the Inventory list | POST | /private/inventory/buy/#/ofItem/# | TBD |
+| **Buy** a quantity of an Item -- i.e. by Inventory (Item) ID; these are the IDs exposed in the Inventory list | POST | /private/inventory/buy/#/ofItem/# | TBD |
+
+[//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
+[//]: # (i.e. go to plantUML website and put this into the form to generate the plantUML URL used above..)
+[//]: # (@startuml
+!includeurl https://raw.githubusercontent.com/bladewheels/GildedRoseAPI/main/src/main/resources/arch.protected.puml
+@enduml)
+[//]: # (DO NOT forget to change 'png' to 'svg' in the URL copy/pasted from the PlantUML form generator - or the URL will not work)
 
 #### Example Requests/Responses:
 * Try the **secured** Inventory API **w/o authentication**:
