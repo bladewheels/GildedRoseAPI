@@ -15,7 +15,8 @@ skinparam sequence {
   ParticipantBorderColor Black
 }
 skinparam style strictuml
-title Registration
+
+title Registration (success)
 
 actor API_User
 participant PublicWebController
@@ -42,4 +43,8 @@ deactivate UserService
 API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
 deactivate PublicWebController
 
+newpage Registration (fail: malformed email)
+' TBD
+newpage Registration (fail: invalid email)
+' TBD
 @enduml
