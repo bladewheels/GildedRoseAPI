@@ -1,20 +1,20 @@
 @startuml
 
-skinparam style strictuml
-skinparam sequence {
-responseMessageBelowArrow true
-ActorBorderColor Black
-CollectionsBackgroundColor LightSlateGrey
-CollectionsBorderColor DimGrey
-LifeLineBorderColor Blue
-ParticipantBackgroundColor WhiteSmoke
-ParticipantBorderColor Black
-}
 autonumber
+header Gilded Rose API ©2021
 hide footbox
 
+skinparam responseMessageBelowArrow true
+skinparam sequence {
+  ActorBorderColor Black
+  CollectionsBackgroundColor Grey
+  CollectionsBorderColor Black
+  LifeLineBorderColor Blue
+  ParticipantBackgroundColor WhiteSmoke
+  ParticipantBorderColor Black
+}
+skinparam style strictuml
 title Registration
-header Gilded Rose API ©2021
 
 actor API_User
 participant PublicWebController
@@ -40,4 +40,5 @@ PublicWebController <[#DarkGreen]-- UserService : return
 deactivate UserService
 API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
 deactivate PublicWebController
+
 @enduml
