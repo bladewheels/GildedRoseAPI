@@ -2,6 +2,7 @@
 
 autonumber
 header Gilded Rose API ©2021
+footer Page %page% of %lastpage%
 hide footbox
 
 skinparam responseMessageBelowArrow true
@@ -44,7 +45,15 @@ API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
 deactivate PublicWebController
 
 newpage Registration (fail: malformed email)
-' TBD
+API_User -[#0000FF]> PublicWebController : POST email address to /register
+note right of API_User
+ Malformed email e.g. abc@@def
+end note
+
 newpage Registration (fail: invalid email)
-' TBD
+API_User -[#0000FF]> PublicWebController : POST email address to /register
+note right of API_User
+ Invalid email e.g. a.b@c.de
+end note
+
 @enduml
