@@ -21,30 +21,15 @@ title Registration (email invalid)
 
 actor API_User
 participant PublicWebController
-participant UserService
-database Users
 
 API_User -[#0000FF]> PublicWebController : POST email address to /register
 note right of API_User
  Invalid email e.g. a.b@c.de
 end note
 activate PublicWebController
-PublicWebController <-- PublicWebController : generate UUID
-PublicWebController <-- PublicWebController : create User w/UUID
-PublicWebController -[#0000FF]> UserService : save(User)
-activate UserService
-UserService -[#0000FF]> Users : put(UUID, User)
-UserService <[#DarkGreen]-- Users : return
-PublicWebController <[#DarkGreen]-- UserService : return
-deactivate UserService
-API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
+PublicWebController <-- PublicWebController : vaidate email
+API_User <[#DarkGreen]-- PublicWebController : return 4xx status code
 deactivate PublicWebController
-
-newpage Registration (fail: malformed email)
-API_User -[#0000FF]> PublicWebController : POST email address to /register
-note right of API_User
- Malformed email e.g. abc@@def
-end note
 
 @enduml
 
