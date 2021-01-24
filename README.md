@@ -122,7 +122,9 @@ and put this e.g. :=>)
 * Controller layer:
   * Accept/return JSON
   * throw Exceptions
-  * introduce Exception handlers that map to status codes
+  * introduce Exception handlers that:
+    * map to status codes
+    * return JSON
   * implement unit tests
 * Documentation:
   * update text & UML diagrams wrt/above
