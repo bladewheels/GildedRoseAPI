@@ -1,7 +1,9 @@
 @startuml
+skinparam responseMessageBelowArrow true
+autonumber
+
 title Registration
 header Gilded Rose API ©2021
-skinparam responseMessageBelowArrow true
 
 actor API_User
 participant PublicWebController
