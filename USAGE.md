@@ -329,7 +329,8 @@ It is *required* that the user of this API has **already** signed up with a vali
 The messaging here is a little opaque here due to the fact that a *DiscontinuedItem* model is being re-used here 
 (I'm too lazy/busy to improve it for now, there's a TODO in the source code). 
 
-Hopefully its enough to get a caller looking in the right direction...until I fix it.
+Hopefully its enough to get a caller looking in the right direction...
+until I fix it (I'll probably throw a custom Exception and figure out a standard messaging format to serialize back to callers).
       
 * Try to buy an Item, but using an **invalid** (i.e. non-numeric) quantity:
     * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/asdf/ofItem/1
@@ -356,7 +357,8 @@ Hopefully its enough to get a caller looking in the right direction...until I fi
 Similar to the last case (above), the messaging here is a little opaque here due to the fact that a *UnderStockedItem* model is being re-used here 
 (I'm too lazy/busy to improve it for now, there's a TODO in the source code).
 
-Hopefully its enough to get a caller looking in the right direction...until I fix it.
+Hopefully its enough to get a caller looking in the right direction...
+until I fix it (I'll probably throw a custom Exception and figure out a standard messaging format to serialize back to callers).
 
 * Try to buy an Item, but using an **invalid** Item identifier (i.e. numeric, but not available from inventory):
     * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/321/ofItem/666
