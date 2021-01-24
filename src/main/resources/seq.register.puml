@@ -9,9 +9,10 @@ collections User_Collection
 
 API_User -> PublicWebController : /register
 PublicWebController <-- PublicWebController : generate UUID
-PublicWebController -> UserService : save()
-UserService -> User_Collection: put()
-UserService <-- User_Collection : return
-PublicWebController <-- UserService : return
-API_User <-- PublicWebController : API token
+PublicWebController <-- PublicWebController : create User w/UUID
+PublicWebController -> UserService : save(User)
+UserService -> User_Collection: put(UUID, User)
+UserService <-- User_Collection : return UUID
+PublicWebController <-- UserService : return UUID
+API_User <-- PublicWebController : UUID aka API token
 @enduml
