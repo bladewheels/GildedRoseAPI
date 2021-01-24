@@ -118,11 +118,12 @@ and put this e.g. :=>)
 * Service layer:
   * throw Exceptions instead of returning Model(s) to Controller
   * migrate Model creation on startup to Data layer
+  * update unit tests accordingly
 * Controller layer:
   * Accept/return JSON
   * throw Exceptions
   * introduce Exception handlers that map to status codes
-  * unit tests
+  * implement unit tests
 
 ###### Here's where I over-communicate some things I wondered about/discarded when I was getting started:
 *  ~~use HATEOS?~~ [Not enough time]
