@@ -65,9 +65,9 @@
 
       * A [public HTTP **Controller**](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/controllers/PublicUsersController.java) offering an [endpoint](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#the-following-endpoints-are-available) for registering new Users.
       * A [private HTTP **Controller**](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/controllers/PrivateInventoryController.java) offering [2 endpoints](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#the-following-endpoints-are-available) for listing or buying InventoryItems.
-      * A [**Service** that manages the registration and authentication of Users](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/security/user/services/UserService.java).
-      * A [**Service** that manage InventoryItems' data, surge pricing and views](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InventoryService.java).
-      * A [**Service** that persists InventoryItems' data and surge pricing data, in-memory](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InventoryStorage.java).
+      * A [business logic **Service** that manages the registration and authentication of Users](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/security/user/services/UserService.java).
+      * A [business logic **Service** that manages InventoryItems' data marshaling , surge pricing and views](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InventoryService.java).
+      * A [data persistence **Service** that handles InventoryItems' data and surge pricing metadata, in-memory](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InventoryStorage.java).
   
 [//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
 [//]: # (i.e. go to PlantUML website 
