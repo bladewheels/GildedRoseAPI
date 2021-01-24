@@ -13,7 +13,10 @@ collections User_Collection
 API_User -> PublicWebController : POST email address to /register
 note right of API_User
  Valid emails, for //demo// purposes:
-   ""customer_x@go.to""
+   - ""customer_x@go.to""
+   - ""customer_x@the.wang""
+   - ""customer_x@us.online""
+   - ""customer_x@cheese.pizza""
 end note
 PublicWebController <-- PublicWebController : generate UUID
 PublicWebController <-- PublicWebController : create User w/UUID
