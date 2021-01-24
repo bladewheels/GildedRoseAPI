@@ -3,12 +3,14 @@ title Registration
 header Gilded Rose API ©2021
 
 actor API_User
+participant PublicWebController
+participant UserService
 collections User_Collection
 
-API_User -> WebController : /register
-WebController -> UserService : save()
+API_User -> PublicWebController : /register
+PublicWebController -> UserService : save()
 UserService -> User_Collection: put()
 UserService <-- User_Collection : return
-WebController <-- UserService : return
-API_User <-- WebController : API token
+PublicWebController <-- UserService : return
+API_User <-- PublicWebController : API token
 @enduml
