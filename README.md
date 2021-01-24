@@ -36,7 +36,7 @@
       * otherwise, they can try again, requesting a lesser quantity
 
 #### Please model (and test!) accordingly. Using **a real database is not required**.
-* Service-layer unit tests are **complete**
+* Service-layer unit tests are [**complete**](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/test/java/com/miw/homework/gildedrose/expanded/services/InMemoryInventoryServiceTest.java).
   * I used constructor-based dependency injection so as to avoid spinning up the Spring container for these.
 * Controller-layer unit tests are currently **not committed to the github repo**, [in progress](https://github.com/bladewheels/GildedRoseAPI/blob/main/README.md#my-backlog).
 * Integration tests are currently **manually done w/curl**, see [here](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#example-requestsresponses)
