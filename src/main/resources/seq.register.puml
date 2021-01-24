@@ -8,7 +8,7 @@ skinparam responseMessageBelowArrow true
 skinparam sequence {
   ActorBackgroundColor DarkKhaki
   ActorBorderColor Blue
-  DatabaseBackgroundColor Grey
+  DatabaseBackgroundColor Gray
   DatabaseBorderColor Black
   LifeLineBorderColor Blue
   ParticipantBackgroundColor WhiteSmoke
