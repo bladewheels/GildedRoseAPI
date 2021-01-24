@@ -175,7 +175,7 @@ It is *required* that the user of this API has **already** signed up with a vali
 #### The following endpoints are available:
 | Use Case | HTTP Verb | Endpoint | Sequence Diagram(s) |
 | :------- | :-------- | :------: | :------: |
-| **Register** with a valid email address | POST | /public/users/register | ![Registration sequence diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqx3i8m40RXdbF01RmzLQWG7U86ZlqhjhHUXtqermT4DTDzYtbMZy6dIvV2KH7Av-Q-svL8yv6sxYtMC6YPuX1FPGvQELSS3M2ZU-UA-fg6s_D18tSXq_8VXStG0YF3EocsRWvD-qzS8FNR3m00) |
+| **Register** with a valid email address | POST | /public/users/register | ![Registration success](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqx3i8m40RXdbF01RmzLQWG7U86ZlqhjhHUXtqermT4DTDzYtbMZy6dIvV2KH7Av-Q-svL8yv6sxYtMC6YPuX1FPGvQELSS3M2ZU-UA-fg6s_D18tSXq_8VXStG0YF3EocsRWvD-qzS8FNR3m00) ![Registration with invalid email](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/png/9Oqx3i8m40LxJW4NyFPKeK9qY1iuzbEoqjeE-o7N9uXgHffY9lEi7arE5-v5eY9KpglxPbSYpNjQsDUOmw1bT4VtL4QZMNB5lW9YT6UfgAzXk3qVr39tCYr_KTW8BJ0ol9DYONDemX4bSVzauPgsttz2hmU_) |
 | **Retrieve** a complete list of Items | GET | /private/inventory/list | TBD |
 | **Buy** a quantity of an Item -- i.e. by Inventory (Item) ID; these are the IDs exposed in the Inventory list | POST | /private/inventory/buy/#/ofItem/# | TBD |
 
