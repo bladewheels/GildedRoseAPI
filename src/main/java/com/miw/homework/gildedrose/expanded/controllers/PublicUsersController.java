@@ -5,6 +5,8 @@ import com.miw.homework.gildedrose.expanded.security.user.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +30,7 @@ final class PublicUsersController {
   UserService service;
 
   @PostMapping("/register")
-  String register(@RequestParam("email") final String email) {
+  ResponseEntity<String> register(@RequestParam("email") final String email) {
 
     if (isShippingAndBillingSetupForThisEmailAddress(email)) {
       final String uuid = UUID.randomUUID().toString();
@@ -40,11 +42,22 @@ final class PublicUsersController {
             .username(email)
             .build()
         );
-      return "Welcome " + email + ", please use the following API token to shop at Gilded Rose ===>" + uuid + "<===.";
+      return new ResponseEntity<>(
+                  "Welcome " + email + ", please use the following API token to shop at Gilded Rose ===>" + uuid + "<===.",
+                  HttpStatus.CREATED);
     }
     else {
-      return "Sorry, that email address is not setup for shipping/billing - please visit https://gildedrose.com/accounts to set that up first.";
+      return new ResponseEntity<>(
+              "Sorry, that email address is not setup for shipping/billing - please visit https://gildedrose.com/accounts to set that up first.",
+              HttpStatus.BAD_REQUEST);
     }
+  }
+
+  /**
+   *
+   */
+  class MockValidUserService {
+
   }
 
   /**
