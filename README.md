@@ -127,6 +127,9 @@ and put this e.g. :=>)
 * Documentation:
   * update text & UML diagrams wrt/above
   * *nice to have*: Swagger or similar
+* Architecture:
+  * consider [feature-focused code organization](https://builtwithdot.net/blog/changing-how-your-code-is-organized-could-speed-development-from-weeks-to-days)
+  * consider [hexagonal architecture](https://medium.com/swlh/a-practical-example-of-applying-java-modules-in-a-hexagonal-architecture-d345deec654b)
 
 
 ###### Here's where I over-communicate some things I wondered about/discarded when I was getting started:
