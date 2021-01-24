@@ -123,6 +123,7 @@ and put this e.g. :=>)
   * Accept/return JSON
   * throw Exceptions
   * introduce Exception handlers that map to status codes
+  * unit tests
 
 ###### Here's where I over-communicate some things I wondered about/discarded when I was getting started:
 *  ~~use HATEOS?~~ [Not enough time]
