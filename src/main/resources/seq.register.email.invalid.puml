@@ -17,7 +17,7 @@ skinparam sequence {
 }
 skinparam style strictuml
 
-title Registration (success)
+title Registration (email invalid)
 
 actor API_User
 participant PublicWebController
