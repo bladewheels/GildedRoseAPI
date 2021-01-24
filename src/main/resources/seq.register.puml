@@ -24,8 +24,8 @@ PublicWebController <-- PublicWebController : create User w/UUID
 PublicWebController -> UserService : save(User)
 activate UserService
 UserService -> User_Collection : put(UUID, User)
-UserService <-- User_Collection : return UUID
-PublicWebController <-- UserService : return UUID
+UserService <-- User_Collection : return
+PublicWebController <-- UserService : return
 deactivate UserService
 API_User <-- PublicWebController : return UUID as API token
 deactivate PublicWebController
