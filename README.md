@@ -115,6 +115,14 @@ and put this e.g. :=>)
     * returning a UUID token in response to a GET to a public (i.e. unauthenticated) URL
     * requiring a (UUID) token in the Authorization HTTP Header of any private URLs.
 
+###### My backlog
+* Service layer:
+  * throw Exceptions instead of returning Model(s) to Controller
+  * migrate Model creation on startup to Data layer
+* Controller layer:
+  * Accept/return JSON
+  * throw Exceptions
+  * introduce Exception handlers that map to status codes
 
 ###### Here's where I over-communicate some things I wondered about/discarded when I was getting started:
 *  ~~use HATEOS?~~ [Not enough time]
