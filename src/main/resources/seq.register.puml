@@ -3,11 +3,12 @@ title Registration
 header Gilded Rose API ©2021
 
 actor API_User
+collections User_Collection
 
 API_User -> WebController : /register
 WebController -> UserService : save()
-' The following self-reference seems to defy web browser caching?!
-UserService -> UserService: Store in memory
+UserService -> User_Collection: put()
+UserService <-- User_Collection : return
 WebController <-- UserService : return
 API_User <-- WebController : API token
 @enduml
