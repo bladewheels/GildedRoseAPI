@@ -8,6 +8,7 @@ ParticipantBackgroundColor WhiteSmoke
 ParticipantBorderColor Black
 }
 autonumber
+hide footbox
 
 title Registration
 header Gilded Rose API ©2021
@@ -31,9 +32,9 @@ PublicWebController <-- PublicWebController : create User w/UUID
 PublicWebController -[#0000FF]> UserService : save(User)
 activate UserService
 UserService -[#0000FF]> User_Collection : put(UUID, User)
-UserService <[DarkGreen]-- User_Collection : return
-PublicWebController <[DarkGreen]-- UserService : return
+UserService <[#DarkGreen]-- User_Collection : return
+PublicWebController <[#DarkGreen]-- UserService : return
 deactivate UserService
-API_User <[DarkGreen]-- PublicWebController : return UUID as API token
+API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
 deactivate PublicWebController
 @enduml
