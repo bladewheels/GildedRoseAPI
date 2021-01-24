@@ -1,6 +1,11 @@
 @startuml
-skinparam monochrome true
-skinparam responseMessageBelowArrow true
+skinparam sequence {
+responseMessageBelowArrow true
+ActorBorderColor Black
+LifeLineBorderColor Blue
+ParticipantBorderColor Black
+ParticipantBackgroundColor WhiteSmoke
+}
 autonumber
 
 title Registration
