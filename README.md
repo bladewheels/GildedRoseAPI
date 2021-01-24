@@ -39,7 +39,7 @@
 * Service-layer unit tests are [**complete**](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/test/java/com/miw/homework/gildedrose/expanded/services/InMemoryInventoryServiceTest.java).
   * I used constructor-based dependency injection so as to avoid spinning up the Spring container for these.
 * Controller-layer unit tests are currently **not committed to the github repo**, [in progress](https://github.com/bladewheels/GildedRoseAPI/blob/main/README.md#my-backlog).
-* Integration tests are currently **manually done w/curl**, see [here](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#example-requestsresponses)
+* Integration tests are currently [**manually done w/curl**](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#example-requestsresponses)
 
 
 #### Deliverables:
@@ -114,7 +114,7 @@ and put this e.g. :=>)
     * returning a UUID token in response to a GET to a public (i.e. unauthenticated) URL
     * requiring a (UUID) token in the Authorization HTTP Header of any private URLs.
 
-###### My backlog
+###### My backlog (is software ever 'done'?)
 * Service layer:
   * throw Exceptions instead of returning Model(s) to Controller
   * migrate Model creation on startup to Data layer
