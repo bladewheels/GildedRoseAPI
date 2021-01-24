@@ -173,7 +173,7 @@ It is *required* that the user of this API has **already** signed up with a vali
 ### Trying out the API
 
 #### The following endpoints are available:
-| Use Case | HTTP Verb | Endpoint | Sequence Diagram |
+| Use Case | HTTP Verb | Endpoint | Sequence Diagram(s) |
 | :------- | :-------- | :------: | :------: |
 | **Register** with a valid email address | POST | /public/users/register | ![Registration sequence diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=http://www.plantuml.com/plantuml/svg/9Sqx3i8m40RXdbF01RmzLQWG7U86ZlqhjhHUXtqermT4DTDzYtbMZy6dIvV2KH7Av-Q-svL8yv6sxYtMC6YPuX1FPGvQELSS3M2ZU-UA-fg6s_D18tSXq_8VXStG0YF3EocsRWvD-qzS8FNR3m00) |
 | **Retrieve** a complete list of Items | GET | /private/inventory/list | TBD |
