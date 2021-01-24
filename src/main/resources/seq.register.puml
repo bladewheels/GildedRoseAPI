@@ -18,11 +18,15 @@ note right of API_User
    - ""customer_x@us.online""
    - ""customer_x@cheese.pizza""
 end note
+activate PublicWebController
 PublicWebController <-- PublicWebController : generate UUID
 PublicWebController <-- PublicWebController : create User w/UUID
 PublicWebController -> UserService : save(User)
+activate UserService
 UserService -> User_Collection : put(UUID, User)
 UserService <-- User_Collection : return UUID
 PublicWebController <-- UserService : return UUID
+deactivate UserService
 API_User <-- PublicWebController : return UUID as API token
+deactivate PublicWebController
 @enduml
