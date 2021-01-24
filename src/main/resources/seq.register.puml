@@ -6,7 +6,7 @@ hide footbox
 
 skinparam responseMessageBelowArrow true
 skinparam sequence {
-  ActorBackgroundColor Grey
+  ActorBackgroundColor DarkKhaki
   ActorBorderColor Black
   CollectionsBackgroundColor Grey
   CollectionsBorderColor Black
