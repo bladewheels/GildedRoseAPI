@@ -1,4 +1,7 @@
 @startuml
+help skinparams
+
+skinparam style strictuml
 skinparam sequence {
 responseMessageBelowArrow true
 ActorBorderColor Black
