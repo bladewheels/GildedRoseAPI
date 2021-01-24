@@ -4,6 +4,7 @@ skinparam style strictuml
 skinparam sequence {
 responseMessageBelowArrow true
 ActorBorderColor Black
+CollectionsBackgroundColor LightSlateGrey
 CollectionsBorderColor DimGrey
 LifeLineBorderColor Blue
 ParticipantBackgroundColor WhiteSmoke
@@ -18,7 +19,7 @@ header Gilded Rose API ©2021
 actor API_User
 participant PublicWebController
 participant UserService
-collections User_Collection #D3D3D3
+collections User_Collection
 
 API_User -[#0000FF]> PublicWebController : POST email address to /register
 note right of API_User
