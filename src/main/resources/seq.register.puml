@@ -33,6 +33,7 @@ note right of API_User
    - ""customer_x@cheese.pizza""
 end note
 activate PublicWebController
+PublicWebController <-- PublicWebController : validate email
 PublicWebController <-- PublicWebController : generate UUID
 PublicWebController <-- PublicWebController : create User w/UUID
 PublicWebController -[#0000FF]> UserService : save(User)
