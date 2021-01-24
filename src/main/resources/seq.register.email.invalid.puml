@@ -1,0 +1,11 @@
+newpage Registration (fail: malformed email)
+API_User -[#0000FF]> PublicWebController : POST email address to /register
+note right of API_User
+ Malformed email e.g. abc@@def
+end note
+
+newpage Registration (fail: invalid email)
+API_User -[#0000FF]> PublicWebController : POST email address to /register
+note right of API_User
+ Invalid email e.g. a.b@c.de
+end note
