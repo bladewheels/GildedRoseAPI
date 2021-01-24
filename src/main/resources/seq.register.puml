@@ -11,6 +11,10 @@ participant UserService
 collections User_Collection
 
 API_User -> PublicWebController : POST email address to /register
+note right of API_User
+ Valid emails, for //demo// purposes:
+   ""customer_x@go.to""
+end note
 PublicWebController <-- PublicWebController : generate UUID
 PublicWebController <-- PublicWebController : create User w/UUID
 PublicWebController -> UserService : save(User)
