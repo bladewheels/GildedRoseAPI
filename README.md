@@ -38,7 +38,7 @@
 #### Please model (and test!) accordingly. Using **a real database is not required**.
 * Service-layer unit tests are [**complete**](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/test/java/com/miw/homework/gildedrose/expanded/services/InMemoryInventoryServiceTest.java).
   * I used constructor-based dependency injection in the system under test to avoid spinning up the Spring container for these tests.
-* Controller-layer unit tests are currently **not committed to the github repo**, [in progress](https://github.com/bladewheels/GildedRoseAPI/blob/main/README.md#my-backlog-is-software-ever-done).
+* Controller-layer unit tests are currently [in progress](https://github.com/bladewheels/GildedRoseAPI/blob/main/README.md#my-backlog-is-software-ever-done).
 * Integration tests are currently [**manually done w/curl**](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#example-requestsresponses)
 
 
@@ -116,22 +116,25 @@ and put this e.g. :=>)
 
 ###### My backlog (is software ever 'done'?)
 * Service layer:
-  * throw Exceptions instead of returning Model(s) to Controller
-  * migrate Model creation on startup to Data layer
-  * update unit tests accordingly
+  * TODO: throw Exceptions instead of returning Model(s) to Controller
+  * TODO: migrate Model creation on startup to Data layer
+  * TODO: update unit tests accordingly
 * Controller layer:
-  * Accept/return JSON
-  * throw Exceptions
-  * introduce Exception handlers that:
-    * map to status codes
-    * return JSON
-  * implement unit tests
+  * TODO: Accept/return JSON
+  * TODO: throw Exceptions
+  * TODO: introduce Exception handlers that:
+    * TODO: map to status codes
+    * TODO: return JSON
+  * PARTIALLY DONE: implement unit tests
+    * DONE: ~~Unsecured User Controller~~
+    * TODO: Secured User Controller
+    * TODO: Secured Inventory Controller
 * Documentation:
-  * update text & UML diagrams wrt/above
-  * *nice to have*: Swagger or similar
+  * TODO: update text & UML diagrams wrt/above
+  * TODO: *nice to have*: Swagger or similar
 * Architecture:
-  * consider [feature-focused code organization](https://builtwithdot.net/blog/changing-how-your-code-is-organized-could-speed-development-from-weeks-to-days)
-  * consider [hexagonal architecture](https://medium.com/swlh/a-practical-example-of-applying-java-modules-in-a-hexagonal-architecture-d345deec654b)
+  * TODO: consider [feature-focused code organization](https://builtwithdot.net/blog/changing-how-your-code-is-organized-could-speed-development-from-weeks-to-days)
+  * TODO: consider [hexagonal architecture](https://medium.com/swlh/a-practical-example-of-applying-java-modules-in-a-hexagonal-architecture-d345deec654b)
 
 
 ###### Here's where I over-communicate some things I wondered about/discarded when I was getting started:
