@@ -15,5 +15,5 @@ PublicWebController -> UserService : save(User)
 UserService -> User_Collection : put(UUID, User)
 UserService <-- User_Collection : return UUID
 PublicWebController <-- UserService : return UUID
-API_User <-- PublicWebController : UUID aka API token
+API_User <-- PublicWebController : return UUID as API token
 @enduml
