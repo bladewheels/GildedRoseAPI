@@ -7,9 +7,9 @@ hide footbox
 skinparam responseMessageBelowArrow true
 skinparam sequence {
   ActorBackgroundColor DarkKhaki
-  ActorBorderColor Black
-  CollectionsBackgroundColor Grey
-  CollectionsBorderColor Black
+  ActorBorderColor Blue
+  DatabaseBackgroundColor Grey
+  DatabaseBorderColor Black
   LifeLineBorderColor Blue
   ParticipantBackgroundColor WhiteSmoke
   ParticipantBorderColor Black
@@ -20,7 +20,7 @@ title Registration
 actor API_User
 participant PublicWebController
 participant UserService
-collections User_Collection
+database Users
 
 API_User -[#0000FF]> PublicWebController : POST email address to /register
 note right of API_User
@@ -35,8 +35,8 @@ PublicWebController <-- PublicWebController : generate UUID
 PublicWebController <-- PublicWebController : create User w/UUID
 PublicWebController -[#0000FF]> UserService : save(User)
 activate UserService
-UserService -[#0000FF]> User_Collection : put(UUID, User)
-UserService <[#DarkGreen]-- User_Collection : return
+UserService -[#0000FF]> Users : put(UUID, User)
+UserService <[#DarkGreen]-- Users : return
 PublicWebController <[#DarkGreen]-- UserService : return
 deactivate UserService
 API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
