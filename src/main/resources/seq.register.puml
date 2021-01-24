@@ -10,7 +10,7 @@ participant PublicWebController
 participant UserService
 collections User_Collection
 
-API_User -[#blue]> PublicWebController : POST email address to /register
+API_User -[#0000FF]> PublicWebController : POST email address to /register
 note right of API_User
  Valid emails, for //demo// purposes:
    - ""customer_x@go.to""
@@ -21,12 +21,12 @@ end note
 activate PublicWebController
 PublicWebController <-- PublicWebController : generate UUID
 PublicWebController <-- PublicWebController : create User w/UUID
-PublicWebController -[#blue]> UserService : save(User)
+PublicWebController -[#0000FF]> UserService : save(User)
 activate UserService
-UserService -[#blue]> User_Collection : put(UUID, User)
-UserService <[#green]-- User_Collection : return
-PublicWebController <[#green]-- UserService : return
+UserService -[#0000FF]> User_Collection : put(UUID, User)
+UserService <[#00FF00]-- User_Collection : return
+PublicWebController <[#00FF00]-- UserService : return
 deactivate UserService
-API_User <[#green]-- PublicWebController : return UUID as API token
+API_User <[#00FF00]-- PublicWebController : return UUID as API token
 deactivate PublicWebController
 @enduml
