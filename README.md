@@ -124,6 +124,10 @@ and put this e.g. :=>)
   * throw Exceptions
   * introduce Exception handlers that map to status codes
   * implement unit tests
+* Documentation:
+  * update text & UML diagrams wrt/above
+  * *nice to have*: Swagger or similar
+
 
 ###### Here's where I over-communicate some things I wondered about/discarded when I was getting started:
 *  ~~use HATEOS?~~ [Not enough time]
