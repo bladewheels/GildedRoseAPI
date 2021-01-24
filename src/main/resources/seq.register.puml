@@ -8,7 +8,7 @@ header Gilded Rose API ©2021
 actor API_User
 participant PublicWebController
 participant UserService
-collections User_Collection
+collections User_Collection #D3D3D3
 
 API_User -[#0000FF]> PublicWebController : POST email address to /register
 note right of API_User
