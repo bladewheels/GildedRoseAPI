@@ -18,7 +18,7 @@ import static java.util.Objects.requireNonNull;
 @Builder
 public class UnderStockedItem implements Serializable, OrderedItem {
     private static final long serialVersionUID = 1L;
-    // TODO: REVIEW: Introduce 18n messaging here and elsewhere...
+    // TODO: REVIEW: Introduce i18n messaging here and elsewhere...
     private static final String UNDER_STOCKED_WARNING = "Sorry, we don't have enough of this Item in stock at the moment - please try again later or purchase less Items.";
 
     String orderId;

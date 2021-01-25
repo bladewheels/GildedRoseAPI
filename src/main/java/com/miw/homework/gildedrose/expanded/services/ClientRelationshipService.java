@@ -1,12 +1,5 @@
 package com.miw.homework.gildedrose.expanded.services;
 
-import lombok.AllArgsConstructor;
-import lombok.experimental.FieldDefaults;
-import org.springframework.stereotype.Service;
-
-import static lombok.AccessLevel.PACKAGE;
-import static lombok.AccessLevel.PRIVATE;
-
 /**
  * Stand-in service for accessing Users already registered with the mothership
  * i.e. https://gildedrose.com/accounts

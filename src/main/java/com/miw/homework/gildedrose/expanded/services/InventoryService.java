@@ -14,18 +14,18 @@ public interface InventoryService {
     int OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY = 3;
 
     /**
-     * Get a {@List} of {@InventoryItem}s.
+     * Get a List of {@link InventoryItem}s.
      *
-     * @return a {@List} of {@InventoryItem}s
+     * @return a List of {@link InventoryItem}s
      */
     List<InventoryItem> findAll();
 
     /**
-     * Buy some quantity of an {@InventoryItem}.
+     * Buy some quantity of an InventoryItem.
      *
      * @param quantity
      * @param inventoriedItemId
-     * @return
+     * @return an OrderedItem representing a purchase
      */
     OrderedItem buy(int quantity, int inventoriedItemId);
 }

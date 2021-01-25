@@ -3,16 +3,13 @@ package com.miw.homework.gildedrose.expanded.models.ordered;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.miw.homework.gildedrose.expanded.models.InventoryItem;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Setter;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 
 import java.io.Serializable;
 
 import static java.util.Objects.requireNonNull;
-import static lombok.AccessLevel.PACKAGE;
 
 /**
  * This class represents a response to an API user who has successfully bought an {@link InventoryItem}.

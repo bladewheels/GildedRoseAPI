@@ -14,7 +14,7 @@ import java.util.Collection;
 import static java.util.Objects.requireNonNull;
 
 /**
- * An implementation of {@UserDetails} for users of this API.
+ * An implementation of {@link UserDetails} for users of this API.
  */
 @Value
 @Builder

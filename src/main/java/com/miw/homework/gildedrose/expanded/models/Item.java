@@ -19,7 +19,7 @@ import static java.util.Objects.requireNonNull;
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // The value of the property is not included in serialization
+    // The property is not included in serialization
     // i.e. so that API users will only see/use the ID
     // of an (enclosing) InventoryItem when choosing what to buy
     @JsonProperty(access = WRITE_ONLY)

@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * A wrapper around {@LongAdder} that doesn't allow inventory stock levels to be dropped below zero.
+ * A wrapper around {@link LongAdder} that doesn't allow inventory stock levels to be dropped below zero.
  */
 @Value
 public class StockLevelAwareLongAdder implements Serializable {

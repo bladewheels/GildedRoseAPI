@@ -5,7 +5,7 @@ import com.miw.homework.gildedrose.expanded.security.user.User;
 import java.util.Optional;
 
 /**
- * Offers some CRUD operations on {@link User}.
+ * Offers some CRUD operations on {@link User}s.
  */
 public interface UserService {
 

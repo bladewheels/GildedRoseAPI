@@ -5,12 +5,12 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
-class SrJavaDevHomeworkApplicationTests {
+@RunWith(SpringRunner.class)
+public class SrJavaDevHomeworkApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 }

@@ -21,7 +21,7 @@ import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
 /**
- * A web controller for private resources i.e. {@link InventoryItem}.
+ * A web controller for private resources i.e. {@link InventoryItem}s.
  */
 @RestController
 @RequestMapping("/private/inventory")
@@ -36,12 +36,14 @@ final class PrivateInventoryController {
   List<InventoryItem> list(@AuthenticationPrincipal final User user) {
     return service.findAll();
   }
+
   @PostMapping("/buy/{quantity}/ofItem/{id}")
   OrderedItem buy(@AuthenticationPrincipal final User user,
                   @PathVariable String id,
                   @PathVariable String quantity) {
     // Guards:
     // TODO: REVIEW: Returning placeholders when parameters evaluate to NaN is quick&dirty but opaque to callers
+    // i.e. throw Exceptions instead...
     try { Integer.valueOf(id); } catch (NumberFormatException nfe) { return getPlaceholderOrderItem(true, null, null); }
     try { Integer.valueOf(quantity); } catch (NumberFormatException nfe) { return getPlaceholderOrderItem(false, id, quantity); }
 

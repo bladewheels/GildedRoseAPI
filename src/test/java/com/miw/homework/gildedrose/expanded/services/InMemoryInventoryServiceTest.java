@@ -147,7 +147,7 @@ class InMemoryInventoryServiceTest {
     }
 
     /**
-     * Workaround for != OrderIds in tests,
+     * Workaround for unequal OrderIds in tests,
      * simply copies the service-generated OrderId
      * from the actual PurchasedItem to the expected PurchasedItem.
      *

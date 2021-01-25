@@ -31,12 +31,12 @@ final class TokenAuthenticationFilter extends AbstractAuthenticationProcessingFi
     final HttpServletRequest request,
     final HttpServletResponse response) {
     final String param = ofNullable(request.getHeader(AUTHORIZATION))
-      .orElse(request.getParameter("t"));
+                          .orElse(request.getParameter("t"));
 
     final String token = ofNullable(param)
-      .map(value -> removeStart(value, BEARER))
-      .map(String::trim)
-      .orElseThrow(() -> new BadCredentialsException("Missing Authentication Token"));
+                          .map(value -> removeStart(value, BEARER))
+                          .map(String::trim)
+                          .orElseThrow(() -> new BadCredentialsException("Missing Authentication Token"));
 
     final Authentication auth = new UsernamePasswordAuthenticationToken(token, token);
     return getAuthenticationManager().authenticate(auth);

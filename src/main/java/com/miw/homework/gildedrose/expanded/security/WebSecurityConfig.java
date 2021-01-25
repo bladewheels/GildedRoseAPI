@@ -25,13 +25,13 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 /**
- * A {@WebSecurityConfigurer} for our API.
+ * A WebSecurityConfigurer for our API.
  */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
     new AntPathRequestMatcher("/public/**"),
@@ -41,9 +41,9 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   TokenAuthenticationProvider provider;
 
-  SecurityConfig(final TokenAuthenticationProvider provider) {
+  WebSecurityConfig(final TokenAuthenticationProvider provider) {
     super();
-    this.provider = requireNonNull(provider);
+    this.provider = (TokenAuthenticationProvider) requireNonNull(provider);
   }
 
   @Override

@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.io.Serializable;
-import java.util.concurrent.atomic.LongAdder;
 
 import static java.util.Objects.requireNonNull;
 
