@@ -7,6 +7,7 @@ import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,7 @@ import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
 /**
- * A web controller for registering new {@link User}s.
+ * A web controller for registering new {@link User}s, identified by their email address.
  */
 @RestController
 @RequestMapping("/public/users")
@@ -51,13 +52,6 @@ final class PublicUsersController {
               "Sorry, that email address is not setup for shipping/billing - please visit https://gildedrose.com/accounts to set that up first.",
               HttpStatus.BAD_REQUEST);
     }
-  }
-
-  /**
-   *
-   */
-  class MockValidUserService {
-
   }
 
   /**
