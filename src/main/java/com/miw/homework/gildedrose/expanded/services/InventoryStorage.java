@@ -14,7 +14,7 @@ public interface InventoryStorage {
 
     Map<Integer, InventoryItem> getAllInventoryItems();
 
-    void addInventoryItem(int id, InventoryItem inventoriedItem);
+    void putInventoryItem(int id, InventoryItem inventoriedItem);
 
     InventoryItem getInventoryItemById(int id);
 }

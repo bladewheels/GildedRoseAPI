@@ -56,6 +56,7 @@ public class InMemoryInventoryService implements InventoryService {
 
             if (currentStockLevel >= quantity) { // Happy path...
                 inventoriedItem.getStockLevel().subtract(quantity);
+                save(inventoriedItem);
                 int priceEach = getSurgeOrListPrice(inventoriedItem.getItem().getPrice(), LocalDateTime.now());
                 return new PurchasedItem(UUID.randomUUID().toString(), inventoriedItem, quantity, priceEach, quantity*priceEach);
             }
@@ -127,7 +128,7 @@ public class InMemoryInventoryService implements InventoryService {
     }
 
     private void save(InventoryItem inventoriedItem) {
-        storage.addInventoryItem(inventoriedItem.getId(), inventoriedItem);
+        storage.putInventoryItem(inventoriedItem.getId(), inventoriedItem);
     }
 
     /**

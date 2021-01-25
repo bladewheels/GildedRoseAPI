@@ -33,7 +33,7 @@ public class InMemoryInventoryStorage implements InventoryStorage {
     }
 
     @Override
-    public void addInventoryItem(int id, InventoryItem inventoriedItem) {
+    public void putInventoryItem(int id, InventoryItem inventoriedItem) {
         items.put(id, inventoriedItem);
     }
 
