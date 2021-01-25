@@ -24,7 +24,7 @@ participant PublicWebController
 participant UserService
 database Users
 
-API_User -[#0000FF]> PublicWebController : POST email address to /register
+API_User -[#0000FF]> PublicWebController : POST email address to /public/register
 note right of API_User
  Valid emails, for //demo// purposes:
    - ""customer_x@go.to""
