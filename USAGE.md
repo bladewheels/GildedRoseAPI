@@ -188,7 +188,7 @@ It is *required* that the user of this API has **already** signed up with a vali
 
 #### Example Requests/Responses:
 * Try the **secured** Inventory API **w/o authentication**:
-    * curl http://localhost:8090/private/inventory/list
+    * ```curl http://localhost:8090/private/inventory/list```
       * returns the JSON: 
           ``` JSON
             {
@@ -201,7 +201,7 @@ It is *required* that the user of this API has **already** signed up with a vali
           ```
 
 * Try *again* with an **invalid authentication token**:
-    * curl -H 'Authorization: Bearer asdf-qwerty-12345' http://localhost:8090/private/inventory/list
+    * ```curl -H 'Authorization: Bearer asdf-qwerty-12345' http://localhost:8090/private/inventory/list```
         * returns the JSON:
             ``` JSON
               {
@@ -214,21 +214,21 @@ It is *required* that the user of this API has **already** signed up with a vali
             ```
           
 * Try to *register* for API use with an **unrecognized** (see Prerequisites & caveats, above) **email**:
-    * curl -X POST -d 'email=a.b@c.de' http://localhost:8090/public/users/register
+    * ```curl -X POST -d 'email=a.b@c.de' http://localhost:8090/public/users/register```
         * returns the message:
           ```
           Sorry, that email address is not setup for shipping/billing - please visit https://gildedrose.com/accounts to set that up first.
           ```
                   
 * Register for API use with a **recognized email**:
-    * curl -X POST -d 'email=customer_x@go.to' http://localhost:8090/public/users/register
+    * ```curl -X POST -d 'email=customer_x@go.to' http://localhost:8090/public/users/register```
       * returns the message containing an *authentication token*: 
         ```
         Welcome customer_x@go.to, please use the following API token to shop at Gilded Rose ===>eaa12ff9-db63-405a-bbe9-4edec303c98b<===.
         ```
         
 * GET the current Inventory w/valid authentication token:
-    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/list
+    * ```curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/list```
         * returns the JSON:
             ``` JSON
               [
@@ -302,7 +302,7 @@ It is *required* that the user of this API has **already** signed up with a vali
             ```
 
 * Try to buy an Item, but using an **invalid** HTTP method (e.g. GET):
-    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/1/ofItem/5
+    * ```curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/1/ofItem/5```
         * returns the JSON:
             ``` JSON
               {
@@ -315,7 +315,7 @@ It is *required* that the user of this API has **already** signed up with a vali
             ```         
           
 * Try to buy an Item, but using an **invalid** (i.e. non-numeric) **Item identifier**:
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/321/ofItem/xxx
+    * ```curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/321/ofItem/xxx```
         * returns the JSON:
             ``` JSON
               {
@@ -333,7 +333,7 @@ Hopefully its enough to get a caller looking in the right direction...
 until I fix it (I'll probably throw a custom Exception and figure out a standard messaging format to serialize back to callers).
       
 * Try to buy an Item, but using an **invalid** (i.e. non-numeric) quantity:
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/asdf/ofItem/1
+    * ```curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/asdf/ofItem/1```
         * returns the JSON:
             ``` JSON
                 {
@@ -361,7 +361,7 @@ Hopefully its enough to get a caller looking in the right direction...
 until I fix it (I'll probably throw a custom Exception and figure out a standard messaging format to serialize back to callers).
 
 * Try to buy an Item, but using an **invalid** Item identifier (i.e. numeric, but not available from inventory):
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/321/ofItem/666
+    * ```curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/321/ofItem/666```
         * returns the JSON:
             ``` JSON
                 {
@@ -374,7 +374,7 @@ until I fix it (I'll probably throw a custom Exception and figure out a standard
             ```
 
 * Try to buy an Item, but asking for **more than we have in stock**:
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/4096/ofItem/5
+    * ```curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/4096/ofItem/5```
         * returns the JSON:
             ``` JSON
                 {
@@ -397,7 +397,7 @@ until I fix it (I'll probably throw a custom Exception and figure out a standard
             ```      
     
 * Buy 1 of an Item, at its *list* price:
-    * curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/1/ofItem/5
+    * ```curl -X POST -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/1/ofItem/5```
         * returns the JSON:
             ``` JSON
               {
@@ -421,7 +421,7 @@ until I fix it (I'll probably throw a custom Exception and figure out a standard
             ```      
 
 * Buy an Item, at its *surge* price (see Prerequisites & caveats, above):
-    * curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/2/ofItem/1
+    * ```curl -H 'Authorization: Bearer eaa12ff9-db63-405a-bbe9-4edec303c98b' http://localhost:8090/private/inventory/buy/2/ofItem/1```
         * returns the JSON:
             ``` JSON
               {
@@ -453,7 +453,3 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo ex i
 Suspendisse quis sem tortor. Sed eget lacus in nibh auctor suscipit. Morbi vel tincidunt velit. Vestibulum egestas ultricies mauris ut egestas. Mauris et metus eget turpis consectetur ullamcorper quis non metus. Etiam accumsan nisi quis nisl dictum commodo. Integer magna elit, vestibulum at augue at, congue suscipit tellus. Maecenas lorem ex, blandit egestas pellentesque ut, sollicitudin id lacus. In blandit ipsum quis nibh dictum convallis. Proin porttitor, odio nec porttitor scelerisque, est velit rutrum mi, non egestas tortor metus sit amet neque. Cras nec diam id nibh efficitur feugiat. Etiam id feugiat velit.
 
 Nam semper eros non imperdiet efficitur. Cras dictum, tortor nec tempor laoreet, diam felis auctor est, quis auctor ante neque nec nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut mauris mi, rhoncus sit amet lacus in, molestie sagittis mi. Praesent ligula nibh, euismod eleifend orci sit amet, tempus luctus nisi. Integer non nisi sodales, accumsan lectus ut, finibus quam. Aenean non pretium eros. Cras quis turpis quis libero euismod commodo interdum id neque. Proin hendrerit dui eu arcu congue convallis. Proin ut sodales odio, at placerat quam. Proin placerat in urna ut mollis. Etiam luctus ante quam, eget faucibus dolor placerat mollis.
-
-Pellentesque id sapien laoreet, dapibus lacus eget, elementum dolor. Phasellus vitae tortor sit amet justo sollicitudin elementum. Donec porta lectus vitae velit imperdiet aliquet. Cras maximus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pharetra dolor ac ex luctus placerat. In orci est, venenatis at neque vel, vehicula eleifend massa. Praesent condimentum nibh eu ultrices luctus. Sed mi enim, efficitur quis magna sed, dignissim dignissim nunc. Mauris quis rutrum dolor. Maecenas quis laoreet tellus, ut hendrerit arcu.
-
-In hac habitasse platea dictumst. Duis id eleifend arcu. Quisque congue elit augue, a accumsan arcu viverra quis. Suspendisse eu purus aliquet, feugiat nulla quis, tempor elit. Curabitur commodo ex elit, ac convallis felis suscipit ac. Aliquam nec efficitur libero, vitae elementum orci. Proin velit lorem, pellentesque id nibh ultrices, semper finibus magna. Etiam sollicitudin venenatis odio, sit amet lacinia massa malesuada ut. Nam iaculis sagittis enim nec convallis.
