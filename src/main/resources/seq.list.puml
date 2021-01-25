@@ -35,6 +35,7 @@ PublicWebController <-- PublicWebController : validate //id//
 PublicWebController -[#0000FF]> InventoryService : findAll()
 activate InventoryService
 InventoryService -[#0000FF]> InventoryAndViewsStorage : incrementViews(//new datetime//)
+InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
 InventoryService -[#0000FF]> InventoryAndViewsStorage : getAllInventoryItems()
 InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
 InventoryService <-- InventoryService : sort(Item::name)
