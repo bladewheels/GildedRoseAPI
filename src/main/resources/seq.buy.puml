@@ -36,14 +36,17 @@ PublicWebController <-- PublicWebController : validate //id//
 PublicWebController -[#0000FF]> InventoryService : buy(//quantity//,//id//)
 activate InventoryService
 InventoryService -[#0000FF]> InventoryAndViewsStorage : getInventoryItemById(//id//)
-InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
-InventoryService <-- InventoryService : stockLevel >= //quantity//?
-InventoryService <-- InventoryService : decrement stockLevel of InventoryItem by //quantity//
+InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return //InventoryItem//
+note right of InventoryService
+ if stockLevel >= //quantity//
+   then decrement stockLevel of //InventoryItem// by //quantity//
+end note
+InventoryService <-- InventoryService : save(//InventoryItem//)
 InventoryService -[#0000FF]> InventoryAndViewsStorage : putInventoryItem(//id//, InventoryItem)
 InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
-PublicWebController <[#DarkGreen]-- InventoryService : return
+PublicWebController <[#DarkGreen]-- InventoryService : return //PurchasedItem//
 deactivate InventoryService
-API_User <[#DarkGreen]-- PublicWebController : return PurchasedItem as JSON
+API_User <[#DarkGreen]-- PublicWebController : return //PurchasedItem// as JSON
 deactivate PublicWebController
 
 @enduml
