@@ -22,12 +22,12 @@ title Registration (email invalid)
 actor API_User
 participant PublicWebController
 
-API_User -[#0000FF]>x PublicWebController : POST email address to /register
+API_User -[#0000FF]> PublicWebController : POST email address to /register
 note right of API_User
  Invalid email e.g. a.b@c.de
 end note
 activate PublicWebController
-PublicWebController <-- PublicWebController : validate email
+PublicWebController x<-- PublicWebController : validate email
 API_User <[#DarkGreen]-- PublicWebController : return 4xx status code
 deactivate PublicWebController
 
