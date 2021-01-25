@@ -1,0 +1,51 @@
+
+@startuml
+
+autonumber
+header Gilded Rose API ©2021
+footer Page 1 of 1
+hide footbox
+
+skinparam responseMessageBelowArrow true
+skinparam sequence {
+  ActorBackgroundColor DarkKhaki
+  ActorBorderColor Blue
+  DatabaseBackgroundColor Gray
+  DatabaseBorderColor Black
+  LifeLineBorderColor Blue
+  ParticipantBackgroundColor WhiteSmoke
+  ParticipantBorderColor Black
+}
+skinparam style strictuml
+
+title Buy Inventory Item (success)
+
+actor API_User
+participant PublicWebController
+participant InventoryService
+database InventoryAndViewsStorage
+
+API_User -[#0000FF]> PublicWebController : GET to /private/inventory/buy///quantity///ofItem///id//
+note right of API_User
+ Provide HTTP Header:
+   - Authorization: Bearer //token//
+end note
+activate PublicWebController
+PublicWebController <-- PublicWebController : validate //quantity//
+PublicWebController <-- PublicWebController : validate //id//
+PublicWebController -[#0000FF]> InventoryService : buy(//quantity//,//id//)
+activate InventoryService
+InventoryService -[#0000FF]> InventoryAndViewsStorage : getInventoryItemById(//id//)
+InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
+InventoryService <-- InventoryService : stockLevel >= //quantity//?
+InventoryService -[#0000FF]> InventoryAndViewsStorage : decrementStockLevel(//id//)
+InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
+InventoryService -[#0000FF]> InventoryAndViewsStorage : getAllInventoryItems()
+InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
+InventoryService <-- InventoryService : sort(Item::name)
+PublicWebController <[#DarkGreen]-- InventoryService : return
+deactivate InventoryService
+API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
+deactivate PublicWebController
+
+@enduml
