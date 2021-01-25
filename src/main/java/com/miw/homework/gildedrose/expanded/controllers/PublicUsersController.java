@@ -2,6 +2,7 @@ package com.miw.homework.gildedrose.expanded.controllers;
 
 import com.miw.homework.gildedrose.expanded.security.user.User;
 import com.miw.homework.gildedrose.expanded.security.user.services.UserService;
+import com.miw.homework.gildedrose.expanded.services.ClientRelationshipService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
@@ -28,14 +29,14 @@ import static lombok.AccessLevel.PRIVATE;
 final class PublicUsersController {
 
   @NonNull
-  UserService service;
+  UserService userService;
 
   @PostMapping("/register")
   ResponseEntity<String> register(@RequestParam("email") final String email) {
 
-    if (isShippingAndBillingSetupForThisEmailAddress(email)) {
+    if (ClientRelationshipService.isShippingAndBillingSetupForThisEmailAddress(email)) {
       final String uuid = UUID.randomUUID().toString();
-      service
+      userService
         .save(
           User
             .builder()
@@ -52,18 +53,5 @@ final class PublicUsersController {
               "Sorry, that email address is not setup for shipping/billing - please visit https://gildedrose.com/accounts to set that up first.",
               HttpStatus.BAD_REQUEST);
     }
-  }
-
-  /**
-   * Bogus remote service call to validate email addresses eligible for API registration.
-   *
-   * @param email
-   * @return true for email addresses eligible for API registration
-   */
-  private boolean isShippingAndBillingSetupForThisEmailAddress(String email) {
-    return email.equalsIgnoreCase("customer_x@go.to") ||
-            email.equalsIgnoreCase("customer_x@the.wang") ||
-            email.equalsIgnoreCase("customer_x@us.online") ||
-            email.equalsIgnoreCase("customer_x@cheese.pizza");
   }
 }
