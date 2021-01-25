@@ -1,0 +1,40 @@
+@startuml
+
+autonumber
+header Gilded Rose API ©2021
+footer Page 1 of 1
+hide footbox
+
+skinparam responseMessageBelowArrow true
+skinparam sequence {
+  ActorBackgroundColor DarkKhaki
+  ActorBorderColor Blue
+  DatabaseBackgroundColor Gray
+  DatabaseBorderColor Black
+  LifeLineBorderColor Blue
+  ParticipantBackgroundColor WhiteSmoke
+  ParticipantBorderColor Black
+}
+skinparam style strictuml
+
+title List Inventory (success)
+
+actor API_User
+participant PublicWebController
+participant InventoryService
+database InventoryItems
+
+API_User -[#0000FF]> PublicWebController : GET to /private/inventory/list///quantity/ofItem///id//
+activate PublicWebController
+PublicWebController <-- PublicWebController : validate //quantity//
+PublicWebController <-- PublicWebController : validate //id//
+PublicWebController -[#0000FF]> InventoryService : findAll()
+activate InventoryService
+InventoryService -[#0000FF]> InventoryItems : get(//id//)
+InventoryService <[#DarkGreen]-- InventoryItems : return
+PublicWebController <[#DarkGreen]-- InventoryService : return
+deactivate InventoryService
+API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
+deactivate PublicWebController
+
+@enduml
