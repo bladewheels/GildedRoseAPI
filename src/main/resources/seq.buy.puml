@@ -23,7 +23,7 @@ title Buy Inventory Item (success)
 actor API_User
 participant PublicWebController
 participant InventoryService
-database InventoryAndViewsStorage
+database InventoryStorage
 
 API_User -[#0000FF]> PublicWebController : GET to /private/inventory/buy///quantity///ofItem///id//
 note right of API_User
@@ -35,15 +35,15 @@ PublicWebController <-- PublicWebController : validate //quantity//
 PublicWebController <-- PublicWebController : validate //id//
 PublicWebController -[#0000FF]> InventoryService : buy(//quantity//,//id//)
 activate InventoryService
-InventoryService -[#0000FF]> InventoryAndViewsStorage : getInventoryItemById(//id//)
-InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return //InventoryItem//
+InventoryService -[#0000FF]> InventoryStorage : getInventoryItemById(//id//)
+InventoryService <[#DarkGreen]-- InventoryStorage : return //InventoryItem//
 note right of InventoryService
  if stockLevel >= //quantity//
    then decrement stockLevel of //InventoryItem// by //quantity//
 end note
 InventoryService <-- InventoryService : save(//InventoryItem//)
-InventoryService -[#0000FF]> InventoryAndViewsStorage : putInventoryItem(//id//, InventoryItem)
-InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
+InventoryService -[#0000FF]> InventoryStorage : putInventoryItem(//id//, InventoryItem)
+InventoryService <[#DarkGreen]-- InventoryStorage : return
 PublicWebController <[#DarkGreen]-- InventoryService : return //PurchasedItem//
 deactivate InventoryService
 API_User <[#DarkGreen]-- PublicWebController : return //PurchasedItem// as JSON
