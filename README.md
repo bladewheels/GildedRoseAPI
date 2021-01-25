@@ -38,7 +38,8 @@
 #### Please model (and test!) accordingly. Using **a real database is not required**.
 * Service-layer unit tests are [**complete**](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/test/java/com/miw/homework/gildedrose/expanded/services/InMemoryInventoryServiceTest.java).
   * I used constructor-based dependency injection in the system under test to avoid spinning up the Spring container for these tests.
-* Controller-layer unit tests are currently [in progress](https://github.com/bladewheels/GildedRoseAPI/blob/main/README.md#my-backlog-is-software-ever-done).
+* Controller-layer unit tests are [**complete**](https://github.com/bladewheels/GildedRoseAPI/blob/main/README.md#my-backlog-is-software-ever-done).
+  * I found figuring out how to run these against the secured endpoints, without spinning up the Spring container took much longer than I expected.
 * Integration tests are currently [**manually done w/curl**](https://github.com/bladewheels/GildedRoseAPI/blob/main/USAGE.md#example-requestsresponses)
 
 
@@ -120,15 +121,15 @@ and put this e.g. :=>)
   * TODO: migrate Model creation on startup to Data layer
   * TODO: update unit tests accordingly
 * Controller layer:
-  * TODO: Accept/return JSON
-  * TODO: throw Exceptions
+  * TODO: Explicitly(?) Accept/return JSON
+  * TODO: throw Exceptions on bad inputs
   * TODO: introduce Exception handlers that:
     * TODO: map to status codes
     * TODO: return JSON
-  * PARTIALLY DONE: implement unit tests
+  * DONE: implement unit tests
     * DONE: ~~Unsecured User Controller~~
-    * TODO: Secured User Controller
-    * TODO: Secured Inventory Controller
+    * DONE: ~~Secured User Controller~~
+    * DONE: ~~Secured Inventory Controller~~
 * Documentation:
   * TODO: update text & UML diagrams wrt/above
   * TODO: *nice to have*: Swagger or similar
