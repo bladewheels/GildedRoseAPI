@@ -39,9 +39,9 @@ InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
 InventoryService -[#0000FF]> InventoryAndViewsStorage : getAllInventoryItems()
 InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
 InventoryService <-- InventoryService : sort(Item::name)
-PublicWebController <[#DarkGreen]-- InventoryService : return
+PublicWebController <[#DarkGreen]-- InventoryService : return List<InventoryItem>
 deactivate InventoryService
-API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
+API_User <[#DarkGreen]-- PublicWebController : return List<InventoryItem>
 deactivate PublicWebController
 
 @enduml
