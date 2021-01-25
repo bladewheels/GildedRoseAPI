@@ -38,11 +38,9 @@ activate InventoryService
 InventoryService -[#0000FF]> InventoryAndViewsStorage : getInventoryItemById(//id//)
 InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
 InventoryService <-- InventoryService : stockLevel >= //quantity//?
-InventoryService -[#0000FF]> InventoryAndViewsStorage : decrementStockLevel(//id//)
+InventoryService <-- InventoryService : decrement stockLevel of InventoryItem by //quantity//
+InventoryService -[#0000FF]> InventoryAndViewsStorage : putInventoryItem(//id//, InventoryItem)
 InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
-InventoryService -[#0000FF]> InventoryAndViewsStorage : getAllInventoryItems()
-InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
-InventoryService <-- InventoryService : sort(Item::name)
 PublicWebController <[#DarkGreen]-- InventoryService : return
 deactivate InventoryService
 API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
