@@ -43,7 +43,7 @@ InventoryService -[#0000FF]> InventoryAndViewsStorage : putInventoryItem(//id//,
 InventoryService <[#DarkGreen]-- InventoryAndViewsStorage : return
 PublicWebController <[#DarkGreen]-- InventoryService : return
 deactivate InventoryService
-API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
+API_User <[#DarkGreen]-- PublicWebController : return PurchasedItem as JSON
 deactivate PublicWebController
 
 @enduml
