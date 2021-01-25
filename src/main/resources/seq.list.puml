@@ -24,7 +24,7 @@ participant PublicWebController
 participant InventoryService
 database InventoryAndViewsStorage
 
-API_User -[#0000FF]> PublicWebController : GET to /private/inventory/list///quantity///ofItem///id//
+API_User -[#0000FF]> PublicWebController : GET to /private/inventory/list
 note right of API_User
  Provide HTTP Header:
    - Authorization: Bearer //token//
