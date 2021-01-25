@@ -22,9 +22,9 @@ title List Inventory (success)
 actor API_User
 participant PublicWebController
 participant InventoryService
-database InventoryItems
+database InventoryStorage
 
-API_User -[#0000FF]> PublicWebController : GET to /private/inventory/list///quantity/ofItem///id//
+API_User -[#0000FF]> PublicWebController : GET to /private/inventory/list///quantity///ofItem///id//
 note right of API_User
  Provide HTTP Header:
    - Authorization: Bearer //token//
@@ -34,8 +34,10 @@ PublicWebController <-- PublicWebController : validate //quantity//
 PublicWebController <-- PublicWebController : validate //id//
 PublicWebController -[#0000FF]> InventoryService : findAll()
 activate InventoryService
-InventoryService -[#0000FF]> InventoryItems : get(//id//)
-InventoryService <[#DarkGreen]-- InventoryItems : return
+InventoryService -[#0000FF]> InventoryStorage : incrementViews(//new datetime//)
+InventoryService -[#0000FF]> InventoryStorage : getAllInventoryItems()
+InventoryService <[#DarkGreen]-- InventoryStorage : return
+InventoryService <-- InventoryService : sort()
 PublicWebController <[#DarkGreen]-- InventoryService : return
 deactivate InventoryService
 API_User <[#DarkGreen]-- PublicWebController : return UUID as API token
