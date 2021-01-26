@@ -37,7 +37,7 @@ activate InventoryService
 InventoryService -[#0000FF]> InventoryStorage : incrementViews(//new datetime//)
 InventoryService <[#DarkGreen]-- InventoryStorage : return
 InventoryService -[#0000FF]> InventoryStorage : getAllInventoryItems()
-InventoryService <[#DarkGreen]-- InventoryStorage : return
+InventoryService <[#DarkGreen]-- InventoryStorage : return List<InventoryItem>
 InventoryService <-- InventoryService : sort(Item::name)
 PublicWebController <[#DarkGreen]-- InventoryService : return List<InventoryItem>
 deactivate InventoryService
