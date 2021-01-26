@@ -1,6 +1,7 @@
 package com.miw.homework.gildedrose.expanded.utils;
 
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 import java.io.Serializable;
 import java.util.concurrent.atomic.LongAdder;
@@ -9,6 +10,7 @@ import java.util.concurrent.atomic.LongAdder;
  * A wrapper around {@link LongAdder} that doesn't allow inventory stock levels to be dropped below zero.
  */
 @Value
+@NonFinal
 public class StockLevelAwareLongAdder implements Serializable {
 
     private static final long serialVersionUID = 1L;

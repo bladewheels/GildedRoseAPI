@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.miw.homework.gildedrose.expanded.utils.StockLevelAwareLongAdder;
 import lombok.Builder;
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 import java.io.Serializable;
 
@@ -15,6 +16,7 @@ import static java.util.Objects.requireNonNull;
  * i.e. potentially available for sale when in-stock.
  */
 @Value
+@NonFinal
 @Builder
 public class InventoryItem implements Serializable {
     private static final long serialVersionUID = 1L;

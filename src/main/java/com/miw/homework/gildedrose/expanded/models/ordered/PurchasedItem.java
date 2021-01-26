@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.miw.homework.gildedrose.expanded.models.InventoryItem;
 import lombok.Builder;
+import lombok.Setter;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 
@@ -20,7 +21,8 @@ public class PurchasedItem implements Serializable, OrderedItem {
     private static final long serialVersionUID = 1L;
     private static final String SURGE_PRICING_WARNING = "Surge pricing may have inflated the list price of this Item.";
 
-    @NonFinal String orderId;
+    @NonFinal @Setter
+    String orderId;
     InventoryItem itemFromInventory;
     int quantity;
     int priceEach;
@@ -41,7 +43,7 @@ public class PurchasedItem implements Serializable, OrderedItem {
     }
 
     // For unit testing ease
-    public void setOrderId(String value) {
-        orderId = value;
-    }
+//    public void setOrderId(String value) {
+//        orderId = value;
+//    }
 }

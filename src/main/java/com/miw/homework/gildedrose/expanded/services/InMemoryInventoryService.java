@@ -56,7 +56,7 @@ public class InMemoryInventoryService implements InventoryService {
 
             if (currentStockLevel >= quantity) { // Happy path...
                 inventoriedItem.getStockLevel().subtract(quantity);
-                save(inventoriedItem);
+                storage.putInventoryItem(inventoriedItem.getId(), inventoriedItem);
                 int priceEach = getSurgeOrListPrice(inventoriedItem.getItem().getPrice(), LocalDateTime.now());
                 return new PurchasedItem(UUID.randomUUID().toString(), inventoriedItem, quantity, priceEach, quantity*priceEach);
             }
@@ -74,62 +74,9 @@ public class InMemoryInventoryService implements InventoryService {
         }
     }
 
-    /**
-     * TODO: Move this to the data layer
-     */
-    @PostConstruct
-    void init() {
-        save(
-            createInventoryItem(4,
-                createItem(1, "Thing 0x001", "A reeallly nice thing!", 35_612))
-        );
-        save(
-            createInventoryItem(5,
-                createItem(2, "A Shiny thing", "A really quite shiny thing!", 75_612))
-        );
-        save(
-            createInventoryItem(6,
-                createItem(3, "Something else ENTIRELY", "WOW, what a thing to sell!", 45_612))
-        );
-        save(
-            createInventoryItem(1,
-                createItem(4, "Yet Another Thing", "So plain, SO non-descriptive...", 55_612))
-        );
-        save(
-            createInventoryItem(3,
-                createItem(5, "WTF", "Huh?", 5_612))
-        );
-
-        save(
-            createInventoryItem(2,
-                createItem(6, "Such a thing", "Sheesh, what is this thing?", 15_309))
-        );
-    }
-
-    Item createItem(int id, String name, String description, int price) {
-        return Item
-                .builder()
-                .id(id)
-                .name(name)
-                .description(description)
-                .price(price)
-                .build();
-    }
-
-    InventoryItem createInventoryItem(int id, Item item) {
-        StockLevelAwareLongAdder quantity = new StockLevelAwareLongAdder();
-        if (OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY != id) /* Make non-zero for the purposes of simple unit testing */ { quantity.add(new Random().nextInt(256) + 10); }
-        return InventoryItem
-                .builder()
-                .id(id)
-                .stockLevel(quantity)
-                .item(item)
-                .build();
-    }
-
-    private void save(InventoryItem inventoriedItem) {
-        storage.putInventoryItem(inventoriedItem.getId(), inventoriedItem);
-    }
+//    private void save(InventoryItem inventoriedItem) {
+//
+//    }
 
     /**
      * Filter the date/times the Inventory was viewed and return a count of the instances.

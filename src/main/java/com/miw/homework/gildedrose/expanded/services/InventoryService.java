@@ -11,8 +11,6 @@ import java.util.List;
  */
 public interface InventoryService {
 
-    int OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY = 3;
-
     /**
      * Get a List of {@link InventoryItem}s.
      *

@@ -3,7 +3,9 @@ package com.miw.homework.gildedrose.expanded.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
+import lombok.Setter;
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 import java.io.Serializable;
 
@@ -15,6 +17,7 @@ import static java.util.Objects.requireNonNull;
  * i.e. when included as part of an {@link InventoryItem}
  */
 @Value
+@NonFinal
 @Builder
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;

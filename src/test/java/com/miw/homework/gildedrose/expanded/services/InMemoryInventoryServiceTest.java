@@ -5,11 +5,14 @@ import com.miw.homework.gildedrose.expanded.models.Item;
 import com.miw.homework.gildedrose.expanded.models.ordered.DiscontinuedItem;
 import com.miw.homework.gildedrose.expanded.models.ordered.PurchasedItem;
 import com.miw.homework.gildedrose.expanded.models.ordered.UnderStockedItem;
+import com.miw.homework.gildedrose.expanded.utils.StockLevelAwareLongAdder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -20,21 +23,27 @@ import java.util.stream.IntStream;
 import static com.miw.homework.gildedrose.expanded.models.ordered.OrderedItem.INVALID_ORDER_ID;
 import static com.miw.homework.gildedrose.expanded.services.InMemoryInventoryService.SURGE_MINUTES;
 import static com.miw.homework.gildedrose.expanded.services.InMemoryInventoryService.SURGE_VIEW_COUNT;
-import static com.miw.homework.gildedrose.expanded.services.InventoryService.OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 class InMemoryInventoryServiceTest {
 
-    InMemoryInventoryStorage db = Mockito.mock(InMemoryInventoryStorage.class);
+    final int OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY = 3;
+    final int INVALID_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY = 333_333;
+
+    Item item = mock(Item.class);
+    InventoryItem inventoryItem =  mock(InventoryItem.class);
+    StockLevelAwareLongAdder stockLevel = mock(StockLevelAwareLongAdder.class);
+    InMemoryInventoryStorage db = mock(InMemoryInventoryStorage.class);
+
     InMemoryInventoryService sut; // i.e. System Under Test
     LocalDateTime now ;
 
     @BeforeEach
     void init() {
         sut = new InMemoryInventoryService(db);
-        sut.init();
         now = LocalDateTime.now();
     }
 
@@ -42,43 +51,47 @@ class InMemoryInventoryServiceTest {
     void buyOutOfStockItem() {
         int price = 333;
         int quantity = 7;
-        Item item = sut.createItem(66, "Foo", "Bar, bar none.", price);
-        InventoryItem inventoryItem = sut.createInventoryItem(OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY, item);
+
+        when(item.getPrice()).thenReturn(price);
+        when(inventoryItem.getId()).thenReturn(OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY);
+        when(inventoryItem.getItem()).thenReturn(item);
+        when(inventoryItem.getStockLevel()).thenReturn(stockLevel);
+        when(stockLevel.intValue()).thenReturn(0);
+        when(db.getInventoryItemById(OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY)).thenReturn(inventoryItem);
 
         UnderStockedItem expected = new UnderStockedItem(INVALID_ORDER_ID, inventoryItem, quantity, 0);
-        when(db.getInventoryItemById(OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY)).thenReturn(inventoryItem);
         UnderStockedItem actual = (UnderStockedItem) sut.buy(quantity, OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY);
 
-        assertEquals(expected, actual,  "It should be equal.");
+        assertEquals(expected, actual,  "UnderStockedItems should be equal.");
     }
 
     @Test
     void buyTooManyItems() {
         int price = 333;
         int quantity = 777_777;
-        Item item = sut.createItem(66, "Foo", "Bar, bar none.", price);
-        InventoryItem inventoryItem = sut.createInventoryItem(3, item);
+
+        when(item.getPrice()).thenReturn(price);
+        when(inventoryItem.getId()).thenReturn(OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY);
+        when(inventoryItem.getItem()).thenReturn(item);
+        when(inventoryItem.getStockLevel()).thenReturn(stockLevel);
+        when(stockLevel.intValue()).thenReturn(0);
+        when(db.getInventoryItemById(OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY)).thenReturn(inventoryItem);
 
         UnderStockedItem expected = new UnderStockedItem(INVALID_ORDER_ID, inventoryItem, quantity, 0);
-        when(db.getInventoryItemById(3)).thenReturn(inventoryItem);
-        UnderStockedItem actual = (UnderStockedItem) sut.buy(quantity, 3);
+        UnderStockedItem actual = (UnderStockedItem) sut.buy(quantity, OUT_OF_STOCK_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY);
 
-        assertEquals(expected, actual,  "It should be equal.");
+        assertEquals(expected, actual,  "UnderStockedItems should be equal.");
     }
 
     @Test
     void buyNeverStockedItem() {
-        int id = 333_333;
-        int price = 333;
         int quantity = 666;
-        Item item = sut.createItem(66, "Foo", "Bar, bar none.", price);
-        InventoryItem inventoryItem = sut.createInventoryItem(id, item);
+        when(db.getInventoryItemById(INVALID_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY)).thenReturn(null);
 
         DiscontinuedItem expected = new DiscontinuedItem();
-        when(db.getInventoryItemById(3)).thenReturn(inventoryItem);
-        DiscontinuedItem actual = (DiscontinuedItem) sut.buy(quantity, id);
+        DiscontinuedItem actual = (DiscontinuedItem) sut.buy(quantity, INVALID_INVENTORY_ID__FOR_DEMO_PURPOSES_ONLY);
 
-        assertEquals(expected, actual,  "It should be equal.");
+        assertEquals(expected, actual,  "DiscontinuedItems should be equal.");
     }
 
     @Test
@@ -134,12 +147,20 @@ class InMemoryInventoryServiceTest {
     }
 
     private void buyItemAndAssertEquals(int id, int price, int quantity) {
-        // TODO: Move the construction of these types from the Service layer to the DB layer:
-        Item item = sut.createItem(66, "Foo", "Bar, bar none.", price);
-        InventoryItem inventoryItem = sut.createInventoryItem(id, item);
+
+        when(item.getId()).thenReturn(66);
+        when(item.getName()).thenReturn("Foo");
+        when(item.getDescription()).thenReturn("Bar, bar none.");
+        when(item.getPrice()).thenReturn(price);
+
+        when(inventoryItem.getId()).thenReturn(id);
+        when(inventoryItem.getItem()).thenReturn(item);
+        when(inventoryItem.getStockLevel()).thenReturn(stockLevel);
+
+        when(stockLevel.intValue()).thenReturn(2 * quantity);
+        when(db.getInventoryItemById(id)).thenReturn(inventoryItem);
 
         PurchasedItem expected = new PurchasedItem("Baz", inventoryItem, quantity, price, quantity * price);
-        when(db.getInventoryItemById(id)).thenReturn(inventoryItem);
         PurchasedItem actual = (PurchasedItem) sut.buy(quantity, id);
 
         ignoreOrderId(expected, actual);
