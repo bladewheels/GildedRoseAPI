@@ -118,8 +118,8 @@ and put this e.g. :=>)
 ###### My backlog (is software ever 'done'?)
 * Service layer:
   * TODO: throw Exceptions instead of returning Model(s) to Controller
-  * TODO: migrate Model creation on startup to Data layer
-  * TODO: update unit tests accordingly
+  * DONE: ~~migrate Model creation on startup to Data layer~~
+  * DONE: ~~update unit tests accordingly~~
 * Controller layer:
   * TODO: Explicitly(?) Accept/return JSON
   * TODO: throw Exceptions on bad inputs
