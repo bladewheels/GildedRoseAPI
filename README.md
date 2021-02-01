@@ -69,7 +69,7 @@
       * A [business logic **Service** that manages InventoryItems' data marshaling , surge pricing and views](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InventoryService.java).
       * A [data persistence **Service** that handles InventoryItems' data and surge pricing metadata, in-memory](https://github.com/bladewheels/GildedRoseAPI/blob/main/src/main/java/com/miw/homework/gildedrose/expanded/services/InventoryStorage.java).
   
-[//]: # (The above UML image was created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
+[//]: # (The above UML images were created using direction from: https://stackoverflow.com/a/32771815; the use of cache=no means that updates to the raw *.puml files will not be cached in readers' browsers)
 [//]: # (i.e. go to PlantUML website 
 e.g. http://www.plantuml.com/plantuml/uml/9Sqz3i8m34VndLF01UATgKo83N63rFwBH7AJoX_gzG4nlRVz5ezgaPkUBdsmfY1DporYzokHrQEyUxHSqs4yHs14uRdHgbLmD42Txbq5yfgEs_D1M-s3tFW_1fzf3ATgtCfkCy01AVlFN33asmy0 
 and put this e.g. :=>)
